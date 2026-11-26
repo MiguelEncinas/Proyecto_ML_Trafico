@@ -1,0 +1,38 @@
+﻿# ============================================
+# PROYECTO ML TRAFICO - SUMO
+# Archivos excluidos del control de versiones
+# ============================================
+
+# Respaldos históricos
+06_documentacion/respaldo_scripts_originales/
+06_documentacion/respaldo_limpieza_raiz/
+
+# Pruebas y nuevas ejecuciones temporales
+04_resultados/pruebas/
+04_resultados/nuevas_ejecuciones/
+
+# Archivos temporales de Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+
+# Entornos virtuales
+.venv/
+venv/
+env/
+
+# Configuraciones locales de editores
+.vscode/
+.idea/
+
+# Archivos temporales del sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Archivos temporales de Office
+~$*
+
+# Registros temporales
+*.log

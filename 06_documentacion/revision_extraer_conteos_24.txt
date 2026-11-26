@@ -1,0 +1,258 @@
+﻿  1: 
+  2: from pathlib import Path
+  3: from collections import defaultdict
+  4: import csv
+  5: import xml.etree.ElementTree as ET
+  6: 
+  7: import traci
+  8: from sumolib import checkBinary
+  9: 
+ 10: carpeta = Path(__file__).resolve().parent
+ 11: config = carpeta / "simulacion.sumocfg"
+ 12: 
+ 13: salida = carpeta / "conteos_24_ejecuciones.csv"
+ 14: 
+ 15: escenarios = [
+ 16:     "baja", "media", "alta",
+ 17:     "punta_jp", "punta_avi",
+ 18:     "punta_tuneles",
+ 19:     "asimetrico_1", "asimetrico_2"
+ 20: ]
+ 21: 
+ 22: semillas = [42, 43, 44]
+ 23: 
+ 24: zonas = {
+ 25:     "jp_sube": [
+ 26:         "e2_jp_sube_bus", "e2_jp_sube_priv"
+ 27:     ],
+ 28:     "jp_baja": [
+ 29:         "e2_jp_baja_bus", "e2_jp_baja_priv"
+ 30:     ],
+ 31:     "tunel_norte": [
+ 32:         "e2_tunel_norte_0"
+ 33:     ],
+ 34:     "avi_izq": [
+ 35:         "e2_avi_izq_0", "e2_avi_izq_1"
+ 36:     ],
+ 37:     "avi_der": [
+ 38:         "e2_avi_der_0", "e2_avi_der_1"
+ 39:     ],
+ 40:     "rampa_bnp": [
+ 41:         "e2_rampa_0"
+ 42:     ]
+ 43: }
+ 44: 
+ 45: tipos = [
+ 46:     "auto", "camioneta", "moto",
+ 47:     "corredor", "bus_aviacion"
+ 48: ]
+ 49: 
+ 50: duracion = 3600
+ 51: intervalo = 300
+ 52: 
+ 53: filas = []
+ 54: ejecuciones_validadas = 0
+ 55: 
+ 56: def leer_mediciones(archivo):
+ 57:     datos = {}
+ 58: 
+ 59:     for _, elemento in ET.iterparse(
+ 60:         archivo, events=("end",)
+ 61:     ):
+ 62:         if elemento.tag != "interval":
+ 63:             continue
+ 64: 
+ 65:         clave = (
+ 66:             elemento.get("id"),
+ 67:             elemento.get("begin"),
+ 68:             elemento.get("end")
+ 69:         )
+ 70: 
+ 71:         datos[clave] = (
+ 72:             elemento.get("nVehEntered"),
+ 73:             elemento.get("meanSpeed"),
+ 74:             elemento.get("meanOccupancy"),
+ 75:             elemento.get("maxJamLengthInMeters")
+ 76:         )
+ 77: 
+ 78:         elemento.clear()
+ 79: 
+ 80:     return datos
+ 81: 
+ 82: for escenario in escenarios:
+ 83:     for semilla in semillas:
+ 84: 
+ 85:         rutas = carpeta / f"trafico_{escenario}.rou.xml"
+ 86: 
+ 87:         if semilla == 42:
+ 88:             referencia = f"{escenario}_"
+ 89:         else:
+ 90:             referencia = f"rep_s{semilla}_{escenario}_"
+ 91: 
+ 92:         archivo_referencia = carpeta / (
+ 93:             referencia + "salidas_sensores.xml"
+ 94:         )
+ 95: 
+ 96:         prefijo = f"extr_s{semilla}_{escenario}_"
+ 97:         archivo_nuevo = carpeta / (
+ 98:             prefijo + "salidas_sensores.xml"
+ 99:         )
+100: 
+101:         if not rutas.exists():
+102:             raise FileNotFoundError(rutas.name)
+103: 
+104:         if not archivo_referencia.exists():
+105:             raise FileNotFoundError(
+106:                 archivo_referencia.name
+107:             )
+108: 
+109:         vistos = {
+110:             zona: set()
+111:             for zona in zonas
+112:         }
+113: 
+114:         conteos = defaultdict(int)
+115: 
+116:         comando = [
+117:             checkBinary("sumo"),
+118:             "-c", str(config),
+119:             "--route-files", str(rutas),
+120:             "--begin", "0",
+121:             "--end", str(duracion),
+122:             "--seed", str(semilla),
+123:             "--output-prefix", prefijo,
+124:             "--no-step-log", "true"
+125:         ]
+126: 
+127:         print(
+128:             f"Procesando {escenario}, semilla {semilla}",
+129:             flush=True
+130:         )
+131: 
+132:         try:
+133:             traci.start(comando)
+134: 
+135:             disponibles = set(
+136:                 traci.lanearea.getIDList()
+137:             )
+138: 
+139:             for sensores in zonas.values():
+140:                 for sensor in sensores:
+141:                     if sensor not in disponibles:
+142:                         raise ValueError(
+143:                             f"Sensor inexistente: {sensor}"
+144:                         )
+145: 
+146:             while traci.simulation.getTime() < duracion:
+147: 
+148:                 traci.simulationStep()
+149: 
+150:                 tiempo = traci.simulation.getTime()
+151: 
+152:                 bloque = min(
+153:                     int(
+154:                         max(0, tiempo - 0.000001)
+155:                         // intervalo
+156:                     ),
+157:                     duracion // intervalo - 1
+158:                 )
+159: 
+160:                 for zona, sensores in zonas.items():
+161: 
+162:                     detectados = set()
+163: 
+164:                     for sensor in sensores:
+165:                         detectados.update(
+166:                             traci.lanearea.getLastStepVehicleIDs(
+167:                                 sensor
+168:                             )
+169:                         )
+170: 
+171:                     nuevos = detectados - vistos[zona]
+172: 
+173:                     for vehiculo in nuevos:
+174: 
+175:                         tipo = traci.vehicle.getTypeID(
+176:                             vehiculo
+177:                         )
+178: 
+179:                         if tipo not in tipos:
+180:                             raise ValueError(
+181:                                 f"Tipo inesperado: {tipo}"
+182:                             )
+183: 
+184:                         conteos[
+185:                             (bloque, zona, tipo)
+186:                         ] += 1
+187: 
+188:                     vistos[zona].update(nuevos)
+189: 
+190:         finally:
+191:             if traci.isLoaded():
+192:                 traci.close()
+193: 
+194:         # Comprobar que esta ejecucion coincide
+195:         # con los sensores originales guardados.
+196:         original = leer_mediciones(
+197:             archivo_referencia
+198:         )
+199:         nuevo = leer_mediciones(
+200:             archivo_nuevo
+201:         )
+202: 
+203:         if len(original) != 120 or original != nuevo:
+204:             raise RuntimeError(
+205:                 "Diferencias en sensores: "
+206:                 f"{escenario}, semilla {semilla}"
+207:             )
+208: 
+209:         # Solo aceptar los conteos si la
+210:         # reproduccion fue validada.
+211:         for bloque in range(duracion // intervalo):
+212:             for zona in zonas:
+213:                 for tipo in tipos:
+214: 
+215:                     filas.append({
+216:                         "escenario": escenario,
+217:                         "semilla": semilla,
+218:                         "inicio_s": bloque * intervalo,
+219:                         "fin_s": (bloque + 1) * intervalo,
+220:                         "zona": zona,
+221:                         "tipo_vehiculo": tipo,
+222:                         "cantidad": conteos[
+223:                             (bloque, zona, tipo)
+224:                         ]
+225:                     })
+226: 
+227:         ejecuciones_validadas += 1
+228: 
+229:         print("  Validacion E2: OK", flush=True)
+230: 
+231: # Guardar la base solamente si todas
+232: # las ejecuciones se validaron.
+233: campos = [
+234:     "escenario", "semilla",
+235:     "inicio_s", "fin_s",
+236:     "zona", "tipo_vehiculo", "cantidad"
+237: ]
+238: 
+239: with salida.open(
+240:     "w", newline="", encoding="utf-8-sig"
+241: ) as archivo:
+242: 
+243:     escritor = csv.DictWriter(
+244:         archivo, fieldnames=campos
+245:     )
+246: 
+247:     escritor.writeheader()
+248:     escritor.writerows(filas)
+249: 
+250: print("\nEXTRACCION FINALIZADA")
+251: print("=" * 55)
+252: print("Ejecuciones validadas:", ejecuciones_validadas)
+253: print("Registros generados:", len(filas))
+254: print("Archivo:", salida.name)
+255: print(
+256:     "Observaciones por zona:",
+257:     sum(fila["cantidad"] for fila in filas)
+258: )

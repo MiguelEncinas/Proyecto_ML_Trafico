@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 2026-11-24T10:09:27.802916-05:00 by Eclipse SUMO netconvert 1.28.0
+<netconvertConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/netconvertConfiguration.xsd">
+
+    <input>
+        <node-files value="jp_aviacion.nod.xml"/>
+        <edge-files value="jp_aviacion.edg.xml"/>
+        <connection-files value="jp_aviacion.con.xml"/>
+    </input>
+
+    <output>
+        <output-file value="jp_aviacion.net.xml"/>
+    </output>
+
+    <junctions>
+        <no-turnarounds value="true"/>
+    </junctions>
+
+</netconvertConfiguration>
+-->
+
+<net version="1.20" junctionCornerDetail="5" limitTurnSpeed="5.50" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/net_file.xsd">
+
+    <location netOffset="360.00,300.00" convBoundary="0.00,0.00,720.00,600.00" origBoundary="-360.00,-300.00,360.00,300.00" projParameter="!"/>
+
+    <edge id=":BNP_RAMPA_BASE_0" function="internal">
+        <lane id=":BNP_RAMPA_BASE_0_0" index="0" allow="passenger" speed="11.11" length="0.21" shape="331.60,190.21 331.58,190.27 331.57,190.31 331.57,190.35 331.56,190.41"/>
+    </edge>
+    <edge id=":JP_BAJA_MERGE_0" function="internal">
+        <lane id=":JP_BAJA_MERGE_0_0" index="0" allow="bus" speed="13.89" length="7.89" shape="295.20,486.05 295.20,478.16"/>
+        <lane id=":JP_BAJA_MERGE_0_1" index="1" disallow="bus" speed="13.89" length="7.89" shape="298.40,486.05 298.40,478.16"/>
+    </edge>
+    <edge id=":JP_BAJA_MERGE_2" function="internal">
+        <lane id=":JP_BAJA_MERGE_2_0" index="0" allow="passenger" speed="8.52" length="7.45" shape="302.44,484.20 300.67,482.52 299.41,480.96 298.65,479.50 298.40,478.16"/>
+    </edge>
+    <edge id=":J_DER_0" function="internal">
+        <lane id=":J_DER_0_0" index="0" disallow="bus" speed="10.37" length="24.57" shape="438.40,304.80 431.05,305.65 425.80,308.20 422.65,312.45 421.60,318.40"/>
+    </edge>
+    <edge id=":J_DER_1" function="internal">
+        <lane id=":J_DER_1_0" index="0" speed="12.50" length="30.40" shape="438.40,304.80 408.00,304.80"/>
+        <lane id=":J_DER_1_1" index="1" speed="12.50" length="30.40" shape="438.40,301.60 408.00,301.60"/>
+    </edge>
+    <edge id=":J_DER_3" function="internal">
+        <lane id=":J_DER_3_0" index="0" allow="bus" speed="13.89" length="36.80" shape="424.80,281.60 424.80,318.40"/>
+    </edge>
+    <edge id=":J_DER_4" function="internal">
+        <lane id=":J_DER_4_0" index="0" disallow="bus" speed="10.37" length="4.11" shape="421.60,281.60 422.31,285.64"/>
+    </edge>
+    <edge id=":J_DER_5" function="internal">
+        <lane id=":J_DER_5_0" index="0" disallow="bus" speed="13.89" length="36.80" shape="421.60,281.60 421.60,318.40"/>
+    </edge>
+    <edge id=":J_DER_9" function="internal">
+        <lane id=":J_DER_9_0" index="0" disallow="bus" speed="10.37" length="20.46" shape="422.31,285.64 422.65,287.55 425.80,291.80 431.05,294.35 438.40,295.20"/>
+    </edge>
+    <edge id=":J_DER_6" function="internal">
+        <lane id=":J_DER_6_0" index="0" speed="12.50" length="30.40" shape="408.00,295.20 438.40,295.20"/>
+        <lane id=":J_DER_6_1" index="1" speed="12.50" length="30.40" shape="408.00,298.40 438.40,298.40"/>
+    </edge>
+    <edge id=":J_DER_8" function="internal">
+        <lane id=":J_DER_8_0" index="0" disallow="bus" speed="10.91" length="3.50" shape="408.00,298.40 411.42,299.12"/>
+    </edge>
+    <edge id=":J_DER_10" function="internal">
+        <lane id=":J_DER_10_0" index="0" disallow="bus" speed="10.91" length="23.79" shape="411.42,299.12 413.95,299.65 418.20,303.40 420.75,309.65 421.60,318.40"/>
+    </edge>
+    <edge id=":J_IZQ_0" function="internal">
+        <lane id=":J_IZQ_0_0" index="0" allow="bus" speed="13.89" length="39.92" shape="295.20,321.52 295.20,281.60"/>
+    </edge>
+    <edge id=":J_IZQ_1" function="internal">
+        <lane id=":J_IZQ_1_0" index="0" disallow="bus" speed="10.73" length="4.75" shape="298.40,320.67 297.69,315.98"/>
+    </edge>
+    <edge id=":J_IZQ_2" function="internal">
+        <lane id=":J_IZQ_2_0" index="0" disallow="bus" speed="13.89" length="39.07" shape="298.40,320.67 298.40,281.60"/>
+    </edge>
+    <edge id=":J_IZQ_11" function="internal">
+        <lane id=":J_IZQ_11_0" index="0" disallow="bus" speed="10.73" length="21.60" shape="297.69,315.98 297.35,313.73 294.20,308.77 288.95,305.79 281.60,304.80"/>
+    </edge>
+    <edge id=":J_IZQ_3" function="internal">
+        <lane id=":J_IZQ_3_0" index="0" allow="passenger" speed="8.69" length="21.10" shape="318.01,304.80 311.85,305.64 308.08,308.15 306.72,312.33 307.75,318.19"/>
+    </edge>
+    <edge id=":J_IZQ_4" function="internal">
+        <lane id=":J_IZQ_4_0" index="0" speed="12.50" length="36.41" shape="318.01,304.80 281.60,304.80"/>
+        <lane id=":J_IZQ_4_1" index="1" speed="12.50" length="36.41" shape="318.01,301.60 281.60,301.60"/>
+    </edge>
+    <edge id=":J_IZQ_6" function="internal">
+        <lane id=":J_IZQ_6_0" index="0" disallow="bus" speed="11.77" length="4.92" shape="318.01,301.60 313.14,300.89"/>
+    </edge>
+    <edge id=":J_IZQ_12" function="internal">
+        <lane id=":J_IZQ_12_0" index="0" disallow="bus" speed="11.77" length="27.02" shape="313.14,300.89 309.43,300.35 303.30,296.60 299.63,290.35 298.40,281.60"/>
+    </edge>
+    <edge id=":J_IZQ_7" function="internal">
+        <lane id=":J_IZQ_7_0" index="0" allow="passenger" speed="8.45" length="20.60" shape="308.98,281.86 307.54,287.70 308.57,291.87 312.06,294.37 318.01,295.20"/>
+    </edge>
+    <edge id=":J_IZQ_8" function="internal">
+        <lane id=":J_IZQ_8_0" index="0" disallow="bus" speed="10.37" length="24.57" shape="281.60,295.20 288.95,294.35 294.20,291.80 297.35,287.55 298.40,281.60"/>
+    </edge>
+    <edge id=":J_IZQ_9" function="internal">
+        <lane id=":J_IZQ_9_0" index="0" speed="12.50" length="36.41" shape="281.60,295.20 318.01,295.20"/>
+        <lane id=":J_IZQ_9_1" index="1" speed="12.50" length="36.41" shape="281.60,298.40 318.01,298.40"/>
+    </edge>
+
+    <edge id="avi_der_in" from="AVI_DER" to="J_DER" priority="-1">
+        <lane id="avi_der_in_0" index="0" speed="13.89" length="281.60" shape="720.00,304.80 438.40,304.80"/>
+        <lane id="avi_der_in_1" index="1" speed="13.89" length="281.60" shape="720.00,301.60 438.40,301.60"/>
+    </edge>
+    <edge id="avi_der_out" from="J_DER" to="AVI_DER" priority="-1">
+        <lane id="avi_der_out_0" index="0" speed="13.89" length="281.60" shape="438.40,295.20 720.00,295.20"/>
+        <lane id="avi_der_out_1" index="1" speed="13.89" length="281.60" shape="438.40,298.40 720.00,298.40"/>
+    </edge>
+    <edge id="avi_izq_in" from="AVI_IZQ" to="J_IZQ" priority="-1">
+        <lane id="avi_izq_in_0" index="0" speed="13.89" length="281.60" shape="0.00,295.20 281.60,295.20"/>
+        <lane id="avi_izq_in_1" index="1" speed="13.89" length="281.60" shape="0.00,298.40 281.60,298.40"/>
+    </edge>
+    <edge id="avi_izq_out" from="J_IZQ" to="AVI_IZQ" priority="-1">
+        <lane id="avi_izq_out_0" index="0" speed="13.89" length="281.60" shape="281.60,304.80 0.00,304.80"/>
+        <lane id="avi_izq_out_1" index="1" speed="13.89" length="281.60" shape="281.60,301.60 0.00,301.60"/>
+    </edge>
+    <edge id="entrada_tunel_bnp" from="TUNEL_SUR_BNP" to="BNP_RAMPA_BASE" priority="-1" shape="350.00,60.00 348.00,120.00 338.00,160.00 330.00,190.00">
+        <lane id="entrada_tunel_bnp_0" index="0" allow="passenger" speed="11.11" length="132.47" shape="351.60,60.05 349.59,120.22 339.55,160.40 331.60,190.21"/>
+    </edge>
+    <edge id="jp_baja_norte_1" from="JP_ARRIBA_IZQ" to="JP_BAJA_MERGE" priority="-1">
+        <lane id="jp_baja_norte_1_0" index="0" allow="bus" speed="13.89" length="113.95" shape="295.20,600.00 295.20,486.05"/>
+        <lane id="jp_baja_norte_1_1" index="1" disallow="bus" speed="13.89" length="113.95" shape="298.40,600.00 298.40,486.05"/>
+    </edge>
+    <edge id="jp_baja_norte_2" from="JP_BAJA_MERGE" to="J_IZQ" priority="-1">
+        <lane id="jp_baja_norte_2_0" index="0" allow="bus" speed="13.89" length="157.06" shape="295.20,478.16 295.20,321.52"/>
+        <lane id="jp_baja_norte_2_1" index="1" disallow="bus" speed="13.89" length="157.06" shape="298.40,478.16 298.40,320.67"/>
+    </edge>
+    <edge id="jp_baja_sur" from="J_IZQ" to="JP_ABAJO_IZQ" priority="-1">
+        <lane id="jp_baja_sur_0" index="0" allow="bus" speed="13.89" length="281.60" shape="295.20,281.60 295.20,0.00"/>
+        <lane id="jp_baja_sur_1" index="1" disallow="bus" speed="13.89" length="281.60" shape="298.40,281.60 298.40,0.00"/>
+    </edge>
+    <edge id="jp_sube_norte" from="J_DER" to="JP_ARRIBA_DER" priority="-1">
+        <lane id="jp_sube_norte_0" index="0" allow="bus" speed="13.89" length="281.60" shape="424.80,318.40 424.80,600.00"/>
+        <lane id="jp_sube_norte_1" index="1" disallow="bus" speed="13.89" length="281.60" shape="421.60,318.40 421.60,600.00"/>
+    </edge>
+    <edge id="jp_sube_sur" from="JP_ABAJO_DER" to="J_DER" priority="-1">
+        <lane id="jp_sube_sur_0" index="0" allow="bus" speed="13.89" length="281.60" shape="424.80,0.00 424.80,281.60"/>
+        <lane id="jp_sube_sur_1" index="1" disallow="bus" speed="13.89" length="281.60" shape="421.60,0.00 421.60,281.60"/>
+    </edge>
+    <edge id="puente_a_der" from="J_IZQ" to="J_DER" priority="-1">
+        <lane id="puente_a_der_0" index="0" speed="11.11" length="89.99" shape="318.01,295.20 408.00,295.20"/>
+        <lane id="puente_a_der_1" index="1" speed="11.11" length="89.99" shape="318.01,298.40 408.00,298.40"/>
+    </edge>
+    <edge id="puente_a_izq" from="J_DER" to="J_IZQ" priority="-1">
+        <lane id="puente_a_izq_0" index="0" speed="11.11" length="89.99" shape="408.00,304.80 318.01,304.80"/>
+        <lane id="puente_a_izq_1" index="1" speed="11.11" length="89.99" shape="408.00,301.60 318.01,301.60"/>
+    </edge>
+    <edge id="rampa_bnp" from="BNP_RAMPA_BASE" to="J_IZQ" priority="-1" shape="330.00,190.00 324.00,235.00 312.00,270.00 300.00,300.00">
+        <lane id="rampa_bnp_0" index="0" allow="passenger" speed="11.11" length="94.73" shape="331.56,190.41 325.56,235.37 313.50,270.56 308.98,281.86"/>
+    </edge>
+    <edge id="rampa_hacia_tunel" from="J_IZQ" to="TUNEL_DESTINO" priority="-1" shape="300.00,300.00 315.00,345.00 340.00,395.00 350.00,440.00">
+        <lane id="rampa_hacia_tunel_0" index="0" allow="passenger" speed="11.11" length="129.89" shape="307.75,318.19 316.48,344.39 341.52,394.46 351.56,439.65"/>
+    </edge>
+    <edge id="salida_tunel_teatro" from="TUNEL_NORTE_IN" to="JP_BAJA_MERGE" priority="-1" shape="350.00,600.00 350.00,550.00 335.00,510.00 300.00,480.00">
+        <lane id="salida_tunel_teatro_0" index="0" allow="passenger" speed="11.11" length="132.83" shape="348.40,600.00 348.40,550.29 333.65,510.95 302.44,484.20"/>
+    </edge>
+
+    <tlLogic id="J_DER" type="static" programID="0" offset="0">
+        <phase duration="42" state="GGGrrrGGg"/>
+        <phase duration="3"  state="yyyrrryyy"/>
+        <phase duration="42" state="rrrGgGrrr"/>
+        <phase duration="3"  state="rrryyyrrr"/>
+    </tlLogic>
+    <tlLogic id="J_IZQ" type="static" programID="0" offset="0">
+        <phase duration="42" state="rrrGGGgrGGG"/>
+        <phase duration="3"  state="rrrGyyyryyy"/>
+        <phase duration="42" state="GgGGrrrGrrr"/>
+        <phase duration="3"  state="yyyGrrryrrr"/>
+    </tlLogic>
+
+    <junction id="AVI_DER" type="dead_end" x="720.00" y="300.00" incLanes="avi_der_out_0 avi_der_out_1" intLanes="" shape="720.00,300.00 720.00,293.60 720.00,300.00"/>
+    <junction id="AVI_IZQ" type="dead_end" x="0.00" y="300.00" incLanes="avi_izq_out_0 avi_izq_out_1" intLanes="" shape="0.00,300.00 0.00,306.40 0.00,300.00"/>
+    <junction id="BNP_RAMPA_BASE" type="priority" x="330.00" y="190.00" incLanes="entrada_tunel_bnp_0" intLanes=":BNP_RAMPA_BASE_0_0" shape="333.14,190.63 330.05,189.80 330.01,189.95 330.00,190.00 329.98,190.12">
+        <request index="0" response="0" foes="0" cont="0"/>
+    </junction>
+    <junction id="JP_ABAJO_DER" type="dead_end" x="420.00" y="0.00" incLanes="" intLanes="" shape="420.00,0.00 426.40,0.00"/>
+    <junction id="JP_ABAJO_IZQ" type="dead_end" x="300.00" y="0.00" incLanes="jp_baja_sur_0 jp_baja_sur_1" intLanes="" shape="293.60,0.00 300.00,0.00"/>
+    <junction id="JP_ARRIBA_DER" type="dead_end" x="420.00" y="600.00" incLanes="jp_sube_norte_0 jp_sube_norte_1" intLanes="" shape="426.40,600.00 420.00,600.00"/>
+    <junction id="JP_ARRIBA_IZQ" type="dead_end" x="300.00" y="600.00" incLanes="" intLanes="" shape="300.00,600.00 293.60,600.00"/>
+    <junction id="JP_BAJA_MERGE" type="priority" x="300.00" y="480.00" incLanes="jp_baja_norte_1_0 jp_baja_norte_1_1 salida_tunel_teatro_0" intLanes=":JP_BAJA_MERGE_0_0 :JP_BAJA_MERGE_0_1 :JP_BAJA_MERGE_2_0" shape="293.60,486.05 300.00,486.05 300.16,485.17 300.35,484.97 300.62,484.95 300.97,485.10 301.40,485.41 303.48,482.98 301.55,481.12 300.87,480.29 300.39,479.51 300.10,478.81 300.00,478.16 293.60,478.16">
+        <request index="0" response="000" foes="000" cont="0"/>
+        <request index="1" response="000" foes="100" cont="0"/>
+        <request index="2" response="010" foes="010" cont="0"/>
+    </junction>
+    <junction id="J_DER" type="traffic_light" x="420.00" y="300.00" incLanes="avi_der_in_0 avi_der_in_1 jp_sube_sur_0 jp_sube_sur_1 puente_a_der_0 puente_a_der_1" intLanes=":J_DER_0_0 :J_DER_1_0 :J_DER_1_1 :J_DER_3_0 :J_DER_9_0 :J_DER_5_0 :J_DER_6_0 :J_DER_6_1 :J_DER_10_0" shape="420.00,318.40 426.40,318.40 426.73,314.73 427.73,311.73 429.40,309.40 431.73,307.73 434.73,306.73 438.40,306.40 438.40,293.60 434.73,293.27 431.73,292.27 429.40,290.60 427.73,288.27 426.73,285.27 426.40,281.60 420.00,281.60 419.67,285.27 418.67,288.27 417.00,290.60 414.67,292.27 411.67,293.27 408.00,293.60 408.00,306.40 411.67,306.73 414.67,307.73 417.00,309.40 418.67,311.73 419.67,314.73" radius="12.00">
+        <request index="0" response="000000000" foes="100101000" cont="0"/>
+        <request index="1" response="000000000" foes="100101000" cont="0"/>
+        <request index="2" response="000000000" foes="100101000" cont="0"/>
+        <request index="3" response="011000111" foes="011010111" cont="0"/>
+        <request index="4" response="011001000" foes="011001000" cont="1"/>
+        <request index="5" response="111000111" foes="111000111" cont="0"/>
+        <request index="6" response="000010000" foes="000111000" cont="0"/>
+        <request index="7" response="000000000" foes="000111000" cont="0"/>
+        <request index="8" response="000000111" foes="000100111" cont="1"/>
+    </junction>
+    <junction id="J_IZQ" type="traffic_light" x="300.00" y="300.00" incLanes="jp_baja_norte_2_0 jp_baja_norte_2_1 puente_a_izq_0 puente_a_izq_1 rampa_bnp_0 avi_izq_in_0 avi_izq_in_1" intLanes=":J_IZQ_0_0 :J_IZQ_11_0 :J_IZQ_2_0 :J_IZQ_3_0 :J_IZQ_4_0 :J_IZQ_4_1 :J_IZQ_12_0 :J_IZQ_7_0 :J_IZQ_8_0 :J_IZQ_9_0 :J_IZQ_9_1" shape="293.60,321.95 309.30,317.78 308.49,314.31 308.58,311.46 309.58,309.25 311.48,307.66 314.29,306.72 318.01,306.40 318.01,293.60 314.46,293.29 311.84,292.36 310.12,290.81 309.32,288.65 309.43,285.86 310.46,282.46 307.49,281.27 304.86,284.00 303.17,284.45 301.60,284.23 300.45,283.29 300.00,281.60 293.60,281.60 293.27,285.27 292.27,288.27 290.60,290.60 288.27,292.27 285.27,293.27 281.60,293.60 281.60,306.40 285.27,306.83 288.27,308.13 290.60,310.29 292.27,313.31 293.27,317.20" radius="12.00">
+        <request index="0"  response="11100110000" foes="11100110010" cont="0"/>
+        <request index="1"  response="00000110001" foes="00000110001" cont="1"/>
+        <request index="2"  response="11101110000" foes="11101110000" cont="0"/>
+        <request index="3"  response="00000000000" foes="00000000000" cont="0"/>
+        <request index="4"  response="00000000010" foes="00000000111" cont="0"/>
+        <request index="5"  response="00000000000" foes="00000000111" cont="0"/>
+        <request index="6"  response="11100000000" foes="11100000100" cont="1"/>
+        <request index="7"  response="11000000000" foes="11000000000" cont="0"/>
+        <request index="8"  response="00000000000" foes="00001000101" cont="0"/>
+        <request index="9"  response="00000000000" foes="00011000101" cont="0"/>
+        <request index="10" response="00000000000" foes="00011000101" cont="0"/>
+    </junction>
+    <junction id="TUNEL_DESTINO" type="dead_end" x="350.00" y="440.00" incLanes="rampa_hacia_tunel_0" intLanes="" shape="353.12,439.31 350.00,440.00"/>
+    <junction id="TUNEL_NORTE_IN" type="dead_end" x="350.00" y="600.00" incLanes="" intLanes="" shape="350.00,600.00 346.80,600.00"/>
+    <junction id="TUNEL_SUR_BNP" type="dead_end" x="350.00" y="60.00" incLanes="" intLanes="" shape="350.00,60.00 353.20,60.11"/>
+
+    <junction id=":J_DER_9_0" type="internal" x="422.31" y="285.64" incLanes=":J_DER_4_0 jp_sube_sur_0" intLanes=":J_DER_3_0 :J_DER_6_0 :J_DER_6_1"/>
+    <junction id=":J_DER_10_0" type="internal" x="411.42" y="299.12" incLanes=":J_DER_8_0 avi_der_in_0 avi_der_in_1" intLanes=":J_DER_0_0 :J_DER_1_0 :J_DER_1_1 :J_DER_3_0 :J_DER_5_0"/>
+    <junction id=":J_IZQ_11_0" type="internal" x="297.69" y="315.98" incLanes=":J_IZQ_1_0 jp_baja_norte_2_0" intLanes=":J_IZQ_0_0 :J_IZQ_4_0 :J_IZQ_4_1"/>
+    <junction id=":J_IZQ_12_0" type="internal" x="313.14" y="300.89" incLanes=":J_IZQ_6_0 avi_izq_in_0 avi_izq_in_1" intLanes=":J_IZQ_0_0 :J_IZQ_2_0 :J_IZQ_8_0 :J_IZQ_9_0 :J_IZQ_9_1"/>
+
+    <connection from="avi_der_in" to="jp_sube_norte" fromLane="0" toLane="1" via=":J_DER_0_0" tl="J_DER" linkIndex="0" dir="r" state="O"/>
+    <connection from="avi_der_in" to="puente_a_izq" fromLane="0" toLane="0" via=":J_DER_1_0" tl="J_DER" linkIndex="1" dir="s" state="O"/>
+    <connection from="avi_der_in" to="puente_a_izq" fromLane="1" toLane="1" via=":J_DER_1_1" tl="J_DER" linkIndex="2" dir="s" state="O"/>
+    <connection from="avi_izq_in" to="jp_baja_sur" fromLane="0" toLane="1" via=":J_IZQ_8_0" tl="J_IZQ" linkIndex="8" dir="r" state="O"/>
+    <connection from="avi_izq_in" to="puente_a_der" fromLane="0" toLane="0" via=":J_IZQ_9_0" tl="J_IZQ" linkIndex="9" dir="s" state="O"/>
+    <connection from="avi_izq_in" to="puente_a_der" fromLane="1" toLane="1" via=":J_IZQ_9_1" tl="J_IZQ" linkIndex="10" dir="s" state="O"/>
+    <connection from="entrada_tunel_bnp" to="rampa_bnp" fromLane="0" toLane="0" via=":BNP_RAMPA_BASE_0_0" dir="s" state="M"/>
+    <connection from="jp_baja_norte_1" to="jp_baja_norte_2" fromLane="0" toLane="0" via=":JP_BAJA_MERGE_0_0" dir="s" state="M"/>
+    <connection from="jp_baja_norte_1" to="jp_baja_norte_2" fromLane="1" toLane="1" via=":JP_BAJA_MERGE_0_1" dir="s" state="M"/>
+    <connection from="jp_baja_norte_2" to="jp_baja_sur" fromLane="0" toLane="0" via=":J_IZQ_0_0" tl="J_IZQ" linkIndex="0" dir="s" state="o"/>
+    <connection from="jp_baja_norte_2" to="avi_izq_out" fromLane="1" toLane="0" via=":J_IZQ_1_0" tl="J_IZQ" linkIndex="1" dir="r" state="o"/>
+    <connection from="jp_baja_norte_2" to="jp_baja_sur" fromLane="1" toLane="1" via=":J_IZQ_2_0" tl="J_IZQ" linkIndex="2" dir="s" state="o"/>
+    <connection from="jp_sube_sur" to="jp_sube_norte" fromLane="0" toLane="0" via=":J_DER_3_0" tl="J_DER" linkIndex="3" dir="s" state="o"/>
+    <connection from="jp_sube_sur" to="avi_der_out" fromLane="1" toLane="0" via=":J_DER_4_0" tl="J_DER" linkIndex="4" dir="r" state="o"/>
+    <connection from="jp_sube_sur" to="jp_sube_norte" fromLane="1" toLane="1" via=":J_DER_5_0" tl="J_DER" linkIndex="5" dir="s" state="o"/>
+    <connection from="puente_a_der" to="avi_der_out" fromLane="0" toLane="0" via=":J_DER_6_0" tl="J_DER" linkIndex="6" dir="s" state="O"/>
+    <connection from="puente_a_der" to="avi_der_out" fromLane="1" toLane="1" via=":J_DER_6_1" tl="J_DER" linkIndex="7" dir="s" state="O"/>
+    <connection from="puente_a_der" to="jp_sube_norte" fromLane="1" toLane="1" via=":J_DER_8_0" tl="J_DER" linkIndex="8" dir="l" state="o"/>
+    <connection from="puente_a_izq" to="rampa_hacia_tunel" fromLane="0" toLane="0" via=":J_IZQ_3_0" tl="J_IZQ" linkIndex="3" dir="r" state="O"/>
+    <connection from="puente_a_izq" to="avi_izq_out" fromLane="0" toLane="0" via=":J_IZQ_4_0" tl="J_IZQ" linkIndex="4" dir="s" state="O"/>
+    <connection from="puente_a_izq" to="avi_izq_out" fromLane="1" toLane="1" via=":J_IZQ_4_1" tl="J_IZQ" linkIndex="5" dir="s" state="O"/>
+    <connection from="puente_a_izq" to="jp_baja_sur" fromLane="1" toLane="1" via=":J_IZQ_6_0" tl="J_IZQ" linkIndex="6" dir="l" state="o"/>
+    <connection from="rampa_bnp" to="puente_a_der" fromLane="0" toLane="0" via=":J_IZQ_7_0" tl="J_IZQ" linkIndex="7" dir="r" state="o"/>
+    <connection from="salida_tunel_teatro" to="jp_baja_norte_2" fromLane="0" toLane="1" via=":JP_BAJA_MERGE_2_0" dir="l" state="m"/>
+
+    <connection from=":BNP_RAMPA_BASE_0" to="rampa_bnp" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":JP_BAJA_MERGE_0" to="jp_baja_norte_2" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":JP_BAJA_MERGE_0" to="jp_baja_norte_2" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":JP_BAJA_MERGE_2" to="jp_baja_norte_2" fromLane="0" toLane="1" dir="l" state="M"/>
+    <connection from=":J_DER_0" to="jp_sube_norte" fromLane="0" toLane="1" dir="r" state="M"/>
+    <connection from=":J_DER_1" to="puente_a_izq" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":J_DER_1" to="puente_a_izq" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":J_DER_3" to="jp_sube_norte" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":J_DER_4" to="avi_der_out" fromLane="0" toLane="0" via=":J_DER_9_0" dir="r" state="m"/>
+    <connection from=":J_DER_9" to="avi_der_out" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":J_DER_5" to="jp_sube_norte" fromLane="0" toLane="1" dir="s" state="M"/>
+    <connection from=":J_DER_6" to="avi_der_out" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":J_DER_6" to="avi_der_out" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":J_DER_8" to="jp_sube_norte" fromLane="0" toLane="1" via=":J_DER_10_0" dir="l" state="m"/>
+    <connection from=":J_DER_10" to="jp_sube_norte" fromLane="0" toLane="1" dir="l" state="M"/>
+    <connection from=":J_IZQ_0" to="jp_baja_sur" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":J_IZQ_1" to="avi_izq_out" fromLane="0" toLane="0" via=":J_IZQ_11_0" dir="r" state="m"/>
+    <connection from=":J_IZQ_11" to="avi_izq_out" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":J_IZQ_2" to="jp_baja_sur" fromLane="0" toLane="1" dir="s" state="M"/>
+    <connection from=":J_IZQ_3" to="rampa_hacia_tunel" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":J_IZQ_4" to="avi_izq_out" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":J_IZQ_4" to="avi_izq_out" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":J_IZQ_6" to="jp_baja_sur" fromLane="0" toLane="1" via=":J_IZQ_12_0" dir="l" state="m"/>
+    <connection from=":J_IZQ_12" to="jp_baja_sur" fromLane="0" toLane="1" dir="l" state="M"/>
+    <connection from=":J_IZQ_7" to="puente_a_der" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":J_IZQ_8" to="jp_baja_sur" fromLane="0" toLane="1" dir="r" state="M"/>
+    <connection from=":J_IZQ_9" to="puente_a_der" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":J_IZQ_9" to="puente_a_der" fromLane="1" toLane="1" dir="s" state="M"/>
+
+</net>

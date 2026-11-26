@@ -1,0 +1,77 @@
+<routes>
+    <!-- Tipos de vehículos -->
+    <vType id="auto"         vClass="passenger"  length="4.5"  maxSpeed="13.89" color="255,220,0"/>
+    <vType id="camioneta"    vClass="passenger"  length="5.3"  maxSpeed="13.89" color="180,180,180"/>
+    <vType id="moto"         vClass="motorcycle" length="2.2"  maxSpeed="15.0"  color="255,120,0"/>
+    <vType id="corredor"     vClass="bus"        length="12.0" maxSpeed="11.11" color="220,20,20"/>
+    <vType id="bus_aviacion" vClass="bus"        length="10.5" maxSpeed="11.11" color="30,110,220"/>
+
+    <!-- Rutas Javier Prado (arriba) -->
+    <route id="r_jp_sube"          edges="jp_sube_sur jp_sube_norte"/>
+    <route id="r_jp_sube_der"      edges="jp_sube_sur avi_der_out"/>
+    <route id="r_jp_baja"          edges="jp_baja_norte_1 jp_baja_norte_2 jp_baja_sur"/>
+    <route id="r_jp_baja_der"      edges="jp_baja_norte_1 jp_baja_norte_2 avi_izq_out"/>
+
+    <!-- Alimentación desde túnel norte a media avenida (SOLO particulares/camionetas) -->
+    <route id="r_tunel_norte_baja" edges="salida_tunel_teatro jp_baja_norte_2 jp_baja_sur"/>
+    <route id="r_tunel_norte_avi"  edges="salida_tunel_teatro jp_baja_norte_2 avi_izq_out"/>
+
+    <!-- Rutas Av. Aviación (todo de frente) -->
+    <route id="r_avi_hacia_der"    edges="avi_izq_in puente_a_der avi_der_out"/>
+    <route id="r_avi_hacia_izq"    edges="avi_der_in puente_a_izq avi_izq_out"/>
+
+    <!-- Particulares girando desde Aviación hacia JP o hacia el túnel (SOLO este->oeste al túnel) -->
+    <route id="r_avi_izq_a_jp"     edges="avi_izq_in jp_baja_sur"/>
+    <route id="r_avi_der_a_jp"     edges="avi_der_in jp_sube_norte"/>
+    <route id="r_avi_der_a_tunel"  edges="avi_der_in puente_a_izq rampa_hacia_tunel"/>
+
+    <!-- Salida del túnel sur (BNP) -> Aviación Este (SOLO particulares/camionetas) -->
+    <route id="r_tunel_bnp_este"   edges="entrada_tunel_bnp rampa_bnp puente_a_der avi_der_out"/>
+
+    <!-- 1. Corredor Rojo (SOLO por arriba en su carril segregado) -->
+    <flow id="f_corredor_sube" type="corredor" route="r_jp_sube" begin="0" end="3600" vehsPerHour="45">
+        <stop busStop="paradero_rambla" duration="20"/>
+    </flow>
+    <flow id="f_corredor_baja" type="corredor" route="r_jp_baja" begin="0" end="3600" vehsPerHour="40">
+        <stop busStop="paradero_teatro" duration="20"/>
+    </flow>
+
+    <!-- 2. Particulares, camionetas y motos en Javier Prado (arriba) -->
+    <flow id="f_jp_sube_auto" type="auto"      route="r_jp_sube"     begin="0" end="3600" vehsPerHour="260"/>
+    <flow id="f_jp_sube_cam"  type="camioneta" route="r_jp_sube"     begin="0" end="3600" vehsPerHour="100"/>
+    <flow id="f_jp_sube_moto" type="moto"      route="r_jp_sube"     begin="0" end="3600" vehsPerHour="90"/>
+    <flow id="f_jp_sube_giro" type="auto"      route="r_jp_sube_der" begin="0" end="3600" vehsPerHour="80"/>
+
+    <flow id="f_jp_baja_auto" type="auto"      route="r_jp_baja"     begin="0" end="3600" vehsPerHour="200"/>
+    <flow id="f_jp_baja_cam"  type="camioneta" route="r_jp_baja"     begin="0" end="3600" vehsPerHour="80"/>
+    <flow id="f_jp_baja_moto" type="moto"      route="r_jp_baja"     begin="0" end="3600" vehsPerHour="80"/>
+    <flow id="f_jp_baja_giro" type="auto"      route="r_jp_baja_der" begin="0" end="3600" vehsPerHour="60"/>
+
+    <!-- Alimentación desde túnel norte (SOLO particulares y camionetas) -->
+    <flow id="f_tunel_n_auto" type="auto"      route="r_tunel_norte_baja" begin="0" end="3600" vehsPerHour="120"/>
+    <flow id="f_tunel_n_cam"  type="camioneta" route="r_tunel_norte_baja" begin="0" end="3600" vehsPerHour="60"/>
+    <flow id="f_tunel_n_avi"  type="auto"      route="r_tunel_norte_avi"  begin="0" end="3600" vehsPerHour="50"/>
+
+    <!-- 3. Av. Aviación: Buses públicos en mayor proporción (SOLO de frente) + particulares -->
+    <flow id="f_avi_der_bus"  type="bus_aviacion" route="r_avi_hacia_der" begin="0" end="3600" vehsPerHour="180">
+        <stop busStop="paradero_cultura" duration="18"/>
+    </flow>
+    <flow id="f_avi_der_auto" type="auto"         route="r_avi_hacia_der" begin="0" end="3600" vehsPerHour="140"/>
+    <flow id="f_avi_der_cam"  type="camioneta"    route="r_avi_hacia_der" begin="0" end="3600" vehsPerHour="55"/>
+
+    <flow id="f_avi_izq_bus"  type="bus_aviacion" route="r_avi_hacia_izq" begin="0" end="3600" vehsPerHour="175">
+        <stop busStop="paradero_tambo" duration="18"/>
+    </flow>
+    <flow id="f_avi_izq_auto" type="auto"         route="r_avi_hacia_izq" begin="0" end="3600" vehsPerHour="130"/>
+    <flow id="f_avi_izq_cam"  type="camioneta"    route="r_avi_hacia_izq" begin="0" end="3600" vehsPerHour="50"/>
+
+    <!-- 4. Particulares desde Aviación hacia JP o hacia el túnel (SOLO este->oeste) -->
+    <flow id="f_avi_izq_jp"    type="auto"      route="r_avi_izq_a_jp"    begin="0" end="3600" vehsPerHour="70"/>
+    <flow id="f_avi_der_jp"    type="auto"      route="r_avi_der_a_jp"    begin="0" end="3600" vehsPerHour="70"/>
+    <flow id="f_avi_der_tunel" type="auto"      route="r_avi_der_a_tunel" begin="0" end="3600" vehsPerHour="90"/>
+    <flow id="f_avi_der_tun_c" type="camioneta" route="r_avi_der_a_tunel" begin="0" end="3600" vehsPerHour="50"/>
+
+    <!-- 5. Túnel sur (BNP) -> Aviación Este (SOLO particulares y camionetas) -->
+    <flow id="f_tunel_bnp_auto" type="auto"      route="r_tunel_bnp_este" begin="0" end="3600" vehsPerHour="120"/>
+    <flow id="f_tunel_bnp_cam"  type="camioneta" route="r_tunel_bnp_este" begin="0" end="3600" vehsPerHour="70"/>
+</routes>

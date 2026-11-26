@@ -1,0 +1,361 @@
+﻿inicio_s,fin_s,acceso,tipo_vehiculo,cantidad
+0,300,Javier Prado subida,auto,29
+0,300,Javier Prado subida,camioneta,9
+0,300,Javier Prado subida,moto,8
+0,300,Javier Prado subida,corredor,4
+0,300,Javier Prado subida,bus_aviacion,0
+0,300,Javier Prado bajada,auto,22
+0,300,Javier Prado bajada,camioneta,7
+0,300,Javier Prado bajada,moto,7
+0,300,Javier Prado bajada,corredor,4
+0,300,Javier Prado bajada,bus_aviacion,0
+0,300,Aviacion izquierda,auto,18
+0,300,Aviacion izquierda,camioneta,5
+0,300,Aviacion izquierda,moto,0
+0,300,Aviacion izquierda,corredor,0
+0,300,Aviacion izquierda,bus_aviacion,15
+0,300,Aviacion derecha,auto,25
+0,300,Aviacion derecha,camioneta,10
+0,300,Aviacion derecha,moto,0
+0,300,Aviacion derecha,corredor,0
+0,300,Aviacion derecha,bus_aviacion,15
+0,300,Tunel norte,auto,15
+0,300,Tunel norte,camioneta,5
+0,300,Tunel norte,moto,0
+0,300,Tunel norte,corredor,0
+0,300,Tunel norte,bus_aviacion,0
+0,300,Tunel BNP,auto,10
+0,300,Tunel BNP,camioneta,6
+0,300,Tunel BNP,moto,0
+0,300,Tunel BNP,corredor,0
+0,300,Tunel BNP,bus_aviacion,0
+300,600,Javier Prado subida,auto,29
+300,600,Javier Prado subida,camioneta,8
+300,600,Javier Prado subida,moto,7
+300,600,Javier Prado subida,corredor,4
+300,600,Javier Prado subida,bus_aviacion,0
+300,600,Javier Prado bajada,auto,22
+300,600,Javier Prado bajada,camioneta,7
+300,600,Javier Prado bajada,moto,7
+300,600,Javier Prado bajada,corredor,3
+300,600,Javier Prado bajada,bus_aviacion,0
+300,600,Aviacion izquierda,auto,18
+300,600,Aviacion izquierda,camioneta,5
+300,600,Aviacion izquierda,moto,0
+300,600,Aviacion izquierda,corredor,0
+300,600,Aviacion izquierda,bus_aviacion,15
+300,600,Aviacion derecha,auto,24
+300,600,Aviacion derecha,camioneta,8
+300,600,Aviacion derecha,moto,0
+300,600,Aviacion derecha,corredor,0
+300,600,Aviacion derecha,bus_aviacion,15
+300,600,Tunel norte,auto,14
+300,600,Tunel norte,camioneta,5
+300,600,Tunel norte,moto,0
+300,600,Tunel norte,corredor,0
+300,600,Tunel norte,bus_aviacion,0
+300,600,Tunel BNP,auto,10
+300,600,Tunel BNP,camioneta,6
+300,600,Tunel BNP,moto,0
+300,600,Tunel BNP,corredor,0
+300,600,Tunel BNP,bus_aviacion,0
+600,900,Javier Prado subida,auto,27
+600,900,Javier Prado subida,camioneta,8
+600,900,Javier Prado subida,moto,8
+600,900,Javier Prado subida,corredor,4
+600,900,Javier Prado subida,bus_aviacion,0
+600,900,Javier Prado bajada,auto,21
+600,900,Javier Prado bajada,camioneta,6
+600,900,Javier Prado bajada,moto,6
+600,900,Javier Prado bajada,corredor,3
+600,900,Javier Prado bajada,bus_aviacion,0
+600,900,Aviacion izquierda,auto,17
+600,900,Aviacion izquierda,camioneta,4
+600,900,Aviacion izquierda,moto,0
+600,900,Aviacion izquierda,corredor,0
+600,900,Aviacion izquierda,bus_aviacion,15
+600,900,Aviacion derecha,auto,25
+600,900,Aviacion derecha,camioneta,8
+600,900,Aviacion derecha,moto,0
+600,900,Aviacion derecha,corredor,0
+600,900,Aviacion derecha,bus_aviacion,14
+600,900,Tunel norte,auto,14
+600,900,Tunel norte,camioneta,5
+600,900,Tunel norte,moto,0
+600,900,Tunel norte,corredor,0
+600,900,Tunel norte,bus_aviacion,0
+600,900,Tunel BNP,auto,10
+600,900,Tunel BNP,camioneta,6
+600,900,Tunel BNP,moto,0
+600,900,Tunel BNP,corredor,0
+600,900,Tunel BNP,bus_aviacion,0
+900,1200,Javier Prado subida,auto,29
+900,1200,Javier Prado subida,camioneta,9
+900,1200,Javier Prado subida,moto,7
+900,1200,Javier Prado subida,corredor,3
+900,1200,Javier Prado subida,bus_aviacion,0
+900,1200,Javier Prado bajada,auto,22
+900,1200,Javier Prado bajada,camioneta,7
+900,1200,Javier Prado bajada,moto,7
+900,1200,Javier Prado bajada,corredor,4
+900,1200,Javier Prado bajada,bus_aviacion,0
+900,1200,Aviacion izquierda,auto,18
+900,1200,Aviacion izquierda,camioneta,5
+900,1200,Aviacion izquierda,moto,0
+900,1200,Aviacion izquierda,corredor,0
+900,1200,Aviacion izquierda,bus_aviacion,15
+900,1200,Aviacion derecha,auto,24
+900,1200,Aviacion derecha,camioneta,8
+900,1200,Aviacion derecha,moto,0
+900,1200,Aviacion derecha,corredor,0
+900,1200,Aviacion derecha,bus_aviacion,15
+900,1200,Tunel norte,auto,14
+900,1200,Tunel norte,camioneta,5
+900,1200,Tunel norte,moto,0
+900,1200,Tunel norte,corredor,0
+900,1200,Tunel norte,bus_aviacion,0
+900,1200,Tunel BNP,auto,10
+900,1200,Tunel BNP,camioneta,6
+900,1200,Tunel BNP,moto,0
+900,1200,Tunel BNP,corredor,0
+900,1200,Tunel BNP,bus_aviacion,0
+1200,1500,Javier Prado subida,auto,29
+1200,1500,Javier Prado subida,camioneta,8
+1200,1500,Javier Prado subida,moto,8
+1200,1500,Javier Prado subida,corredor,4
+1200,1500,Javier Prado subida,bus_aviacion,0
+1200,1500,Javier Prado bajada,auto,22
+1200,1500,Javier Prado bajada,camioneta,7
+1200,1500,Javier Prado bajada,moto,7
+1200,1500,Javier Prado bajada,corredor,3
+1200,1500,Javier Prado bajada,bus_aviacion,0
+1200,1500,Aviacion izquierda,auto,18
+1200,1500,Aviacion izquierda,camioneta,4
+1200,1500,Aviacion izquierda,moto,0
+1200,1500,Aviacion izquierda,corredor,0
+1200,1500,Aviacion izquierda,bus_aviacion,15
+1200,1500,Aviacion derecha,auto,25
+1200,1500,Aviacion derecha,camioneta,8
+1200,1500,Aviacion derecha,moto,0
+1200,1500,Aviacion derecha,corredor,0
+1200,1500,Aviacion derecha,bus_aviacion,14
+1200,1500,Tunel norte,auto,14
+1200,1500,Tunel norte,camioneta,5
+1200,1500,Tunel norte,moto,0
+1200,1500,Tunel norte,corredor,0
+1200,1500,Tunel norte,bus_aviacion,0
+1200,1500,Tunel BNP,auto,10
+1200,1500,Tunel BNP,camioneta,6
+1200,1500,Tunel BNP,moto,0
+1200,1500,Tunel BNP,corredor,0
+1200,1500,Tunel BNP,bus_aviacion,0
+1500,1800,Javier Prado subida,auto,27
+1500,1800,Javier Prado subida,camioneta,8
+1500,1800,Javier Prado subida,moto,7
+1500,1800,Javier Prado subida,corredor,4
+1500,1800,Javier Prado subida,bus_aviacion,0
+1500,1800,Javier Prado bajada,auto,21
+1500,1800,Javier Prado bajada,camioneta,6
+1500,1800,Javier Prado bajada,moto,6
+1500,1800,Javier Prado bajada,corredor,3
+1500,1800,Javier Prado bajada,bus_aviacion,0
+1500,1800,Aviacion izquierda,auto,16
+1500,1800,Aviacion izquierda,camioneta,5
+1500,1800,Aviacion izquierda,moto,0
+1500,1800,Aviacion izquierda,corredor,0
+1500,1800,Aviacion izquierda,bus_aviacion,15
+1500,1800,Aviacion derecha,auto,22
+1500,1800,Aviacion derecha,camioneta,8
+1500,1800,Aviacion derecha,moto,0
+1500,1800,Aviacion derecha,corredor,0
+1500,1800,Aviacion derecha,bus_aviacion,15
+1500,1800,Tunel norte,auto,14
+1500,1800,Tunel norte,camioneta,5
+1500,1800,Tunel norte,moto,0
+1500,1800,Tunel norte,corredor,0
+1500,1800,Tunel norte,bus_aviacion,0
+1500,1800,Tunel BNP,auto,10
+1500,1800,Tunel BNP,camioneta,5
+1500,1800,Tunel BNP,moto,0
+1500,1800,Tunel BNP,corredor,0
+1500,1800,Tunel BNP,bus_aviacion,0
+1800,2100,Javier Prado subida,auto,29
+1800,2100,Javier Prado subida,camioneta,9
+1800,2100,Javier Prado subida,moto,8
+1800,2100,Javier Prado subida,corredor,4
+1800,2100,Javier Prado subida,bus_aviacion,0
+1800,2100,Javier Prado bajada,auto,22
+1800,2100,Javier Prado bajada,camioneta,7
+1800,2100,Javier Prado bajada,moto,7
+1800,2100,Javier Prado bajada,corredor,4
+1800,2100,Javier Prado bajada,bus_aviacion,0
+1800,2100,Aviacion izquierda,auto,18
+1800,2100,Aviacion izquierda,camioneta,5
+1800,2100,Aviacion izquierda,moto,0
+1800,2100,Aviacion izquierda,corredor,0
+1800,2100,Aviacion izquierda,bus_aviacion,15
+1800,2100,Aviacion derecha,auto,25
+1800,2100,Aviacion derecha,camioneta,10
+1800,2100,Aviacion derecha,moto,0
+1800,2100,Aviacion derecha,corredor,0
+1800,2100,Aviacion derecha,bus_aviacion,15
+1800,2100,Tunel norte,auto,15
+1800,2100,Tunel norte,camioneta,5
+1800,2100,Tunel norte,moto,0
+1800,2100,Tunel norte,corredor,0
+1800,2100,Tunel norte,bus_aviacion,0
+1800,2100,Tunel BNP,auto,10
+1800,2100,Tunel BNP,camioneta,6
+1800,2100,Tunel BNP,moto,0
+1800,2100,Tunel BNP,corredor,0
+1800,2100,Tunel BNP,bus_aviacion,0
+2100,2400,Javier Prado subida,auto,29
+2100,2400,Javier Prado subida,camioneta,8
+2100,2400,Javier Prado subida,moto,7
+2100,2400,Javier Prado subida,corredor,3
+2100,2400,Javier Prado subida,bus_aviacion,0
+2100,2400,Javier Prado bajada,auto,22
+2100,2400,Javier Prado bajada,camioneta,7
+2100,2400,Javier Prado bajada,moto,7
+2100,2400,Javier Prado bajada,corredor,3
+2100,2400,Javier Prado bajada,bus_aviacion,0
+2100,2400,Aviacion izquierda,auto,18
+2100,2400,Aviacion izquierda,camioneta,4
+2100,2400,Aviacion izquierda,moto,0
+2100,2400,Aviacion izquierda,corredor,0
+2100,2400,Aviacion izquierda,bus_aviacion,15
+2100,2400,Aviacion derecha,auto,24
+2100,2400,Aviacion derecha,camioneta,8
+2100,2400,Aviacion derecha,moto,0
+2100,2400,Aviacion derecha,corredor,0
+2100,2400,Aviacion derecha,bus_aviacion,14
+2100,2400,Tunel norte,auto,14
+2100,2400,Tunel norte,camioneta,5
+2100,2400,Tunel norte,moto,0
+2100,2400,Tunel norte,corredor,0
+2100,2400,Tunel norte,bus_aviacion,0
+2100,2400,Tunel BNP,auto,10
+2100,2400,Tunel BNP,camioneta,6
+2100,2400,Tunel BNP,moto,0
+2100,2400,Tunel BNP,corredor,0
+2100,2400,Tunel BNP,bus_aviacion,0
+2400,2700,Javier Prado subida,auto,27
+2400,2700,Javier Prado subida,camioneta,8
+2400,2700,Javier Prado subida,moto,8
+2400,2700,Javier Prado subida,corredor,4
+2400,2700,Javier Prado subida,bus_aviacion,0
+2400,2700,Javier Prado bajada,auto,21
+2400,2700,Javier Prado bajada,camioneta,6
+2400,2700,Javier Prado bajada,moto,6
+2400,2700,Javier Prado bajada,corredor,3
+2400,2700,Javier Prado bajada,bus_aviacion,0
+2400,2700,Aviacion izquierda,auto,17
+2400,2700,Aviacion izquierda,camioneta,5
+2400,2700,Aviacion izquierda,moto,0
+2400,2700,Aviacion izquierda,corredor,0
+2400,2700,Aviacion izquierda,bus_aviacion,15
+2400,2700,Aviacion derecha,auto,25
+2400,2700,Aviacion derecha,camioneta,8
+2400,2700,Aviacion derecha,moto,0
+2400,2700,Aviacion derecha,corredor,0
+2400,2700,Aviacion derecha,bus_aviacion,15
+2400,2700,Tunel norte,auto,14
+2400,2700,Tunel norte,camioneta,5
+2400,2700,Tunel norte,moto,0
+2400,2700,Tunel norte,corredor,0
+2400,2700,Tunel norte,bus_aviacion,0
+2400,2700,Tunel BNP,auto,10
+2400,2700,Tunel BNP,camioneta,6
+2400,2700,Tunel BNP,moto,0
+2400,2700,Tunel BNP,corredor,0
+2400,2700,Tunel BNP,bus_aviacion,0
+2700,3000,Javier Prado subida,auto,29
+2700,3000,Javier Prado subida,camioneta,9
+2700,3000,Javier Prado subida,moto,7
+2700,3000,Javier Prado subida,corredor,4
+2700,3000,Javier Prado subida,bus_aviacion,0
+2700,3000,Javier Prado bajada,auto,22
+2700,3000,Javier Prado bajada,camioneta,7
+2700,3000,Javier Prado bajada,moto,7
+2700,3000,Javier Prado bajada,corredor,4
+2700,3000,Javier Prado bajada,bus_aviacion,0
+2700,3000,Aviacion izquierda,auto,18
+2700,3000,Aviacion izquierda,camioneta,4
+2700,3000,Aviacion izquierda,moto,0
+2700,3000,Aviacion izquierda,corredor,0
+2700,3000,Aviacion izquierda,bus_aviacion,15
+2700,3000,Aviacion derecha,auto,24
+2700,3000,Aviacion derecha,camioneta,8
+2700,3000,Aviacion derecha,moto,0
+2700,3000,Aviacion derecha,corredor,0
+2700,3000,Aviacion derecha,bus_aviacion,14
+2700,3000,Tunel norte,auto,14
+2700,3000,Tunel norte,camioneta,5
+2700,3000,Tunel norte,moto,0
+2700,3000,Tunel norte,corredor,0
+2700,3000,Tunel norte,bus_aviacion,0
+2700,3000,Tunel BNP,auto,10
+2700,3000,Tunel BNP,camioneta,6
+2700,3000,Tunel BNP,moto,0
+2700,3000,Tunel BNP,corredor,0
+2700,3000,Tunel BNP,bus_aviacion,0
+3000,3300,Javier Prado subida,auto,29
+3000,3300,Javier Prado subida,camioneta,8
+3000,3300,Javier Prado subida,moto,8
+3000,3300,Javier Prado subida,corredor,4
+3000,3300,Javier Prado subida,bus_aviacion,0
+3000,3300,Javier Prado bajada,auto,22
+3000,3300,Javier Prado bajada,camioneta,7
+3000,3300,Javier Prado bajada,moto,7
+3000,3300,Javier Prado bajada,corredor,3
+3000,3300,Javier Prado bajada,bus_aviacion,0
+3000,3300,Aviacion izquierda,auto,18
+3000,3300,Aviacion izquierda,camioneta,5
+3000,3300,Aviacion izquierda,moto,0
+3000,3300,Aviacion izquierda,corredor,0
+3000,3300,Aviacion izquierda,bus_aviacion,15
+3000,3300,Aviacion derecha,auto,25
+3000,3300,Aviacion derecha,camioneta,8
+3000,3300,Aviacion derecha,moto,0
+3000,3300,Aviacion derecha,corredor,0
+3000,3300,Aviacion derecha,bus_aviacion,15
+3000,3300,Tunel norte,auto,14
+3000,3300,Tunel norte,camioneta,5
+3000,3300,Tunel norte,moto,0
+3000,3300,Tunel norte,corredor,0
+3000,3300,Tunel norte,bus_aviacion,0
+3000,3300,Tunel BNP,auto,10
+3000,3300,Tunel BNP,camioneta,6
+3000,3300,Tunel BNP,moto,0
+3000,3300,Tunel BNP,corredor,0
+3000,3300,Tunel BNP,bus_aviacion,0
+3300,3600,Javier Prado subida,auto,27
+3300,3600,Javier Prado subida,camioneta,8
+3300,3600,Javier Prado subida,moto,7
+3300,3600,Javier Prado subida,corredor,3
+3300,3600,Javier Prado subida,bus_aviacion,0
+3300,3600,Javier Prado bajada,auto,21
+3300,3600,Javier Prado bajada,camioneta,6
+3300,3600,Javier Prado bajada,moto,6
+3300,3600,Javier Prado bajada,corredor,3
+3300,3600,Javier Prado bajada,bus_aviacion,0
+3300,3600,Aviacion izquierda,auto,16
+3300,3600,Aviacion izquierda,camioneta,4
+3300,3600,Aviacion izquierda,moto,0
+3300,3600,Aviacion izquierda,corredor,0
+3300,3600,Aviacion izquierda,bus_aviacion,15
+3300,3600,Aviacion derecha,auto,22
+3300,3600,Aviacion derecha,camioneta,8
+3300,3600,Aviacion derecha,moto,0
+3300,3600,Aviacion derecha,corredor,0
+3300,3600,Aviacion derecha,bus_aviacion,14
+3300,3600,Tunel norte,auto,14
+3300,3600,Tunel norte,camioneta,5
+3300,3600,Tunel norte,moto,0
+3300,3600,Tunel norte,corredor,0
+3300,3600,Tunel norte,bus_aviacion,0
+3300,3600,Tunel BNP,auto,10
+3300,3600,Tunel BNP,camioneta,5
+3300,3600,Tunel BNP,moto,0
+3300,3600,Tunel BNP,corredor,0
+3300,3600,Tunel BNP,bus_aviacion,0

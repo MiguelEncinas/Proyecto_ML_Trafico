@@ -1,0 +1,146 @@
+﻿  1: 
+  2: import csv
+  3: from pathlib import Path
+  4: from collections import defaultdict
+  5: 
+  6: import traci
+  7: from sumolib import checkBinary
+  8: 
+  9: carpeta = Path(__file__).resolve().parent
+ 10: config = carpeta / "simulacion.sumocfg"
+ 11: salida = carpeta / "conteo_unico_por_zona.csv"
+ 12: 
+ 13: # Agrupar los sensores de un mismo tramo
+ 14: zonas = {
+ 15:     "jp_sube": [
+ 16:         "e2_jp_sube_bus",
+ 17:         "e2_jp_sube_priv"
+ 18:     ],
+ 19:     "jp_baja": [
+ 20:         "e2_jp_baja_bus",
+ 21:         "e2_jp_baja_priv"
+ 22:     ],
+ 23:     "tunel_norte": [
+ 24:         "e2_tunel_norte_0"
+ 25:     ],
+ 26:     "avi_izq": [
+ 27:         "e2_avi_izq_0",
+ 28:         "e2_avi_izq_1"
+ 29:     ],
+ 30:     "avi_der": [
+ 31:         "e2_avi_der_0",
+ 32:         "e2_avi_der_1"
+ 33:     ],
+ 34:     "rampa_bnp": [
+ 35:         "e2_rampa_0"
+ 36:     ]
+ 37: }
+ 38: 
+ 39: tipos = [
+ 40:     "auto", "camioneta", "moto",
+ 41:     "corredor", "bus_aviacion"
+ 42: ]
+ 43: 
+ 44: intervalo = 300
+ 45: duracion = 3600
+ 46: 
+ 47: conteos = defaultdict(int)
+ 48: 
+ 49: # Cada vehiculo se cuenta una sola vez por zona
+ 50: vistos = {
+ 51:     zona: set()
+ 52:     for zona in zonas
+ 53: }
+ 54: 
+ 55: comando = [
+ 56:     checkBinary("sumo"),
+ 57:     "-c", str(config),
+ 58:     "--output-prefix", "conteo_unico_",
+ 59:     "--no-step-log", "true"
+ 60: ]
+ 61: 
+ 62: try:
+ 63:     traci.start(comando)
+ 64: 
+ 65:     disponibles = set(traci.lanearea.getIDList())
+ 66: 
+ 67:     for zona, sensores in zonas.items():
+ 68:         for sensor in sensores:
+ 69:             if sensor not in disponibles:
+ 70:                 raise ValueError(
+ 71:                     f"Sensor no encontrado: {sensor}"
+ 72:                 )
+ 73: 
+ 74:     while traci.simulation.getTime() < duracion:
+ 75:         traci.simulationStep()
+ 76:         tiempo = traci.simulation.getTime()
+ 77: 
+ 78:         bloque = min(
+ 79:             int(max(0, tiempo - 0.000001) // intervalo),
+ 80:             duracion // intervalo - 1
+ 81:         )
+ 82: 
+ 83:         for zona, sensores in zonas.items():
+ 84: 
+ 85:             # Union de IDs de todos los sensores
+ 86:             # pertenecientes a la misma zona.
+ 87:             vehiculos_zona = set()
+ 88: 
+ 89:             for sensor in sensores:
+ 90:                 vehiculos_zona.update(
+ 91:                     traci.lanearea.getLastStepVehicleIDs(
+ 92:                         sensor
+ 93:                     )
+ 94:                 )
+ 95: 
+ 96:             nuevos = vehiculos_zona - vistos[zona]
+ 97: 
+ 98:             for vehiculo in nuevos:
+ 99:                 tipo = traci.vehicle.getTypeID(vehiculo)
+100:                 conteos[(bloque, zona, tipo)] += 1
+101: 
+102:             vistos[zona].update(nuevos)
+103: 
+104: finally:
+105:     if traci.isLoaded():
+106:         traci.close()
+107: 
+108: with salida.open(
+109:     "w",
+110:     newline="",
+111:     encoding="utf-8-sig"
+112: ) as archivo:
+113: 
+114:     escritor = csv.writer(archivo)
+115: 
+116:     escritor.writerow([
+117:         "inicio_s", "fin_s",
+118:         "zona", "tipo_vehiculo", "cantidad"
+119:     ])
+120: 
+121:     for bloque in range(duracion // intervalo):
+122:         for zona in zonas:
+123:             for tipo in tipos:
+124:                 escritor.writerow([
+125:                     bloque * intervalo,
+126:                     (bloque + 1) * intervalo,
+127:                     zona,
+128:                     tipo,
+129:                     conteos[(bloque, zona, tipo)]
+130:                 ])
+131: 
+132: print("\nCONTEO UNICO POR ZONA COMPLETADO")
+133: print("=" * 55)
+134: 
+135: for zona in zonas:
+136:     total = sum(
+137:         cantidad
+138:         for (bloque, nombre, tipo), cantidad
+139:         in conteos.items()
+140:         if nombre == zona
+141:     )
+142:     print(f"{zona}: {total}")
+143: 
+144: print("\nArchivo:", salida.name)
+145: print("Registros:", 12 * len(zonas) * len(tipos))
+146: print("Observaciones por zona:", sum(conteos.values()))

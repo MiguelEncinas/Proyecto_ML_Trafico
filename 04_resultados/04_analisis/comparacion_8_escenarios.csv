@@ -1,0 +1,9 @@
+﻿escenario,viajes_completados,duracion_media_s,espera_media_s,tiempo_perdido_medio_s,circulando_al_final,esperando_ingresar,pendientes_total
+baja,1579,81.2,15.88,26.07,29,0,29
+media,2422,82.86,15.83,27.69,43,0,43
+alta,3180,124.44,44.64,68.82,105,166,271
+punta_jp,2634,140.99,57.92,86.97,115,237,352
+punta_avi,2896,95.76,19.9,38.59,72,0,72
+punta_tuneles,2640,112.39,37.07,57.34,81,80,161
+asimetrico_1,2553,110.39,33.38,55.43,68,155,223
+asimetrico_2,2604,93.24,20.51,37.1,60,0,60

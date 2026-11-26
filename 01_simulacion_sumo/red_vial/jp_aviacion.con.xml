@@ -1,0 +1,40 @@
+<connections>
+    <!-- Incorporación a media avenida en JP_BAJA_MERGE -->
+    <connection from="jp_baja_norte_1"     to="jp_baja_norte_2" fromLane="0" toLane="0"/>
+    <connection from="jp_baja_norte_1"     to="jp_baja_norte_2" fromLane="1" toLane="1"/>
+    <connection from="salida_tunel_teatro" to="jp_baja_norte_2" fromLane="0" toLane="1"/>
+
+    <!-- Javier Prado bajando en J_IZQ -->
+    <connection from="jp_baja_norte_2" to="jp_baja_sur" fromLane="0" toLane="0"/>
+    <connection from="jp_baja_norte_2" to="jp_baja_sur" fromLane="1" toLane="1"/>
+    <connection from="jp_baja_norte_2" to="avi_izq_out" fromLane="1" toLane="0"/>
+
+    <!-- Salida del túnel sur (BNP): ÚNICAMENTE hacia el este (puente_a_der) -->
+    <connection from="rampa_bnp" to="puente_a_der" fromLane="0" toLane="0"/>
+
+    <!-- Aviación de OESTE a ESTE (avi_izq_in): NO puede entrar al túnel -->
+    <connection from="avi_izq_in" to="puente_a_der" fromLane="0" toLane="0"/>
+    <connection from="avi_izq_in" to="puente_a_der" fromLane="1" toLane="1"/>
+    <connection from="avi_izq_in" to="jp_baja_sur"  fromLane="0" toLane="1"/>
+
+    <!-- Aviación de ESTE a OESTE (puente_a_izq): ÚNICA vía que entra al túnel -->
+    <connection from="puente_a_izq" to="avi_izq_out"       fromLane="0" toLane="0"/>
+    <connection from="puente_a_izq" to="avi_izq_out"       fromLane="1" toLane="1"/>
+    <connection from="puente_a_izq" to="rampa_hacia_tunel" fromLane="0" toLane="0"/>
+    <connection from="puente_a_izq" to="jp_baja_sur"       fromLane="1" toLane="1"/>
+
+    <!-- Javier Prado subiendo en J_DER -->
+    <connection from="jp_sube_sur" to="jp_sube_norte" fromLane="0" toLane="0"/>
+    <connection from="jp_sube_sur" to="jp_sube_norte" fromLane="1" toLane="1"/>
+    <connection from="jp_sube_sur" to="avi_der_out"   fromLane="1" toLane="0"/>
+
+    <!-- Aviación desde derecha (este->oeste) en J_DER -->
+    <connection from="avi_der_in" to="puente_a_izq"  fromLane="0" toLane="0"/>
+    <connection from="avi_der_in" to="puente_a_izq"  fromLane="1" toLane="1"/>
+    <connection from="avi_der_in" to="jp_sube_norte" fromLane="0" toLane="1"/>
+
+    <!-- Puente hacia derecha (oeste->este) en J_DER -->
+    <connection from="puente_a_der" to="avi_der_out"   fromLane="0" toLane="0"/>
+    <connection from="puente_a_der" to="avi_der_out"   fromLane="1" toLane="1"/>
+    <connection from="puente_a_der" to="jp_sube_norte" fromLane="1" toLane="1"/>
+</connections>

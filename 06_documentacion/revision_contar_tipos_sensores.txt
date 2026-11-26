@@ -1,0 +1,109 @@
+﻿  1: 
+  2: import csv
+  3: from collections import defaultdict
+  4: from pathlib import Path
+  5: 
+  6: import traci
+  7: from sumolib import checkBinary
+  8: 
+  9: carpeta = Path(__file__).resolve().parent
+ 10: config = carpeta / "simulacion.sumocfg"
+ 11: salida = carpeta / "conteo_tipos_sensores.csv"
+ 12: 
+ 13: tipos = [
+ 14:     "auto",
+ 15:     "camioneta",
+ 16:     "moto",
+ 17:     "corredor",
+ 18:     "bus_aviacion"
+ 19: ]
+ 20: 
+ 21: intervalo = 300
+ 22: duracion = 3600
+ 23: 
+ 24: conteos = defaultdict(int)
+ 25: vistos = defaultdict(set)
+ 26: 
+ 27: comando = [
+ 28:     checkBinary("sumo"),
+ 29:     "-c", str(config),
+ 30:     "--output-prefix", "auditoria_e2_",
+ 31:     "--no-step-log", "true"
+ 32: ]
+ 33: 
+ 34: try:
+ 35:     traci.start(comando)
+ 36: 
+ 37:     sensores = sorted(traci.lanearea.getIDList())
+ 38: 
+ 39:     print("\nCONTEO VEHICULAR POR SENSOR E2")
+ 40:     print("=" * 55)
+ 41:     print("Sensores encontrados:", len(sensores))
+ 42: 
+ 43:     while traci.simulation.getTime() < duracion:
+ 44:         traci.simulationStep()
+ 45: 
+ 46:         tiempo = traci.simulation.getTime()
+ 47: 
+ 48:         bloque = min(
+ 49:             int(max(0, tiempo - 0.000001) // intervalo),
+ 50:             duracion // intervalo - 1
+ 51:         )
+ 52: 
+ 53:         for sensor in sensores:
+ 54: 
+ 55:             vehiculos = traci.lanearea.getLastStepVehicleIDs(
+ 56:                 sensor
+ 57:             )
+ 58: 
+ 59:             for vehiculo in vehiculos:
+ 60: 
+ 61:                 # Evita contar repetidamente un mismo
+ 62:                 # vehiculo dentro del mismo detector.
+ 63:                 if vehiculo in vistos[sensor]:
+ 64:                     continue
+ 65: 
+ 66:                 vistos[sensor].add(vehiculo)
+ 67: 
+ 68:                 tipo = traci.vehicle.getTypeID(vehiculo)
+ 69: 
+ 70:                 conteos[(bloque, sensor, tipo)] += 1
+ 71: 
+ 72: finally:
+ 73:     if traci.isLoaded():
+ 74:         traci.close()
+ 75: 
+ 76: with salida.open(
+ 77:     "w",
+ 78:     newline="",
+ 79:     encoding="utf-8-sig"
+ 80: ) as archivo:
+ 81: 
+ 82:     escritor = csv.writer(archivo)
+ 83: 
+ 84:     escritor.writerow([
+ 85:         "inicio_s",
+ 86:         "fin_s",
+ 87:         "sensor",
+ 88:         "tipo_vehiculo",
+ 89:         "cantidad"
+ 90:     ])
+ 91: 
+ 92:     for bloque in range(duracion // intervalo):
+ 93:         for sensor in sensores:
+ 94:             for tipo in tipos:
+ 95: 
+ 96:                 escritor.writerow([
+ 97:                     bloque * intervalo,
+ 98:                     (bloque + 1) * intervalo,
+ 99:                     sensor,
+100:                     tipo,
+101:                     conteos[(bloque, sensor, tipo)]
+102:                 ])
+103: 
+104: print("\nCONTEO COMPLETADO")
+105: print("Archivo:", salida.name)
+106: print("Intervalos:", duracion // intervalo)
+107: print("Tipos vehiculares:", len(tipos))
+108: print("Registros:", 12 * len(sensores) * len(tipos))
+109: print("Detecciones:", sum(conteos.values()))

@@ -1,0 +1,47 @@
+<edges>
+    <!-- Javier Prado Auxiliar SUBIENDO (Lado La Rambla -> Financiera OH) -->
+    <edge id="jp_sube_sur" from="JP_ABAJO_DER" to="J_DER" numLanes="2" speed="13.89">
+        <lane index="0" allow="bus"/>
+        <lane index="1" disallow="bus"/>
+    </edge>
+    <edge id="jp_sube_norte" from="J_DER" to="JP_ARRIBA_DER" numLanes="2" speed="13.89">
+        <lane index="0" allow="bus"/>
+        <lane index="1" disallow="bus"/>
+    </edge>
+
+    <!-- Javier Prado Auxiliar BAJANDO (Lado Teatro -> BNP) -->
+    <edge id="jp_baja_norte_1" from="JP_ARRIBA_IZQ" to="JP_BAJA_MERGE" numLanes="2" speed="13.89">
+        <lane index="0" allow="bus"/>
+        <lane index="1" disallow="bus"/>
+    </edge>
+    <edge id="jp_baja_norte_2" from="JP_BAJA_MERGE" to="J_IZQ" numLanes="2" speed="13.89">
+        <lane index="0" allow="bus"/>
+        <lane index="1" disallow="bus"/>
+    </edge>
+    <edge id="jp_baja_sur" from="J_IZQ" to="JP_ABAJO_IZQ" numLanes="2" speed="13.89">
+        <lane index="0" allow="bus"/>
+        <lane index="1" disallow="bus"/>
+    </edge>
+
+    <!-- Alimentación desde el túnel norte a media avenida (1 carril, SOLO particulares/camionetas) -->
+    <edge id="salida_tunel_teatro" from="TUNEL_NORTE_IN" to="JP_BAJA_MERGE" numLanes="1" speed="11.11" allow="passenger"
+          shape="-10,300 -10,250 -25,210 -60,180"/>
+
+    <!-- Rampa ENTRANDO desde Aviación (solo este->oeste) hacia el túnel (1 carril, SOLO particulares/camionetas) -->
+    <edge id="rampa_hacia_tunel" from="J_IZQ" to="TUNEL_DESTINO" numLanes="1" speed="11.11" allow="passenger"
+          shape="-60,0 -45,45 -20,95 -10,140"/>
+
+    <!-- Rampa SALIENDO del túnel sur (BNP) hacia Aviación Este (1 carril, SOLO particulares/camionetas) -->
+    <edge id="entrada_tunel_bnp" from="TUNEL_SUR_BNP" to="BNP_RAMPA_BASE" numLanes="1" speed="11.11" allow="passenger"
+          shape="-10,-240 -12,-180 -22,-140 -30,-110"/>
+    <edge id="rampa_bnp" from="BNP_RAMPA_BASE" to="J_IZQ" numLanes="1" speed="11.11" allow="passenger"
+          shape="-30,-110 -36,-65 -48,-30 -60,0"/>
+
+    <!-- Av. Aviación (2 carriles por sentido: buses públicos + particulares) -->
+    <edge id="avi_izq_in"   from="AVI_IZQ" to="J_IZQ"   numLanes="2" speed="13.89"/>
+    <edge id="avi_izq_out"  from="J_IZQ"   to="AVI_IZQ" numLanes="2" speed="13.89"/>
+    <edge id="puente_a_der" from="J_IZQ"   to="J_DER"   numLanes="2" speed="11.11"/>
+    <edge id="puente_a_izq" from="J_DER"   to="J_IZQ"   numLanes="2" speed="11.11"/>
+    <edge id="avi_der_out"  from="J_DER"   to="AVI_DER" numLanes="2" speed="13.89"/>
+    <edge id="avi_der_in"   from="AVI_DER" to="J_DER"   numLanes="2" speed="13.89"/>
+</edges>

@@ -1,0 +1,196 @@
+﻿  1: 
+  2: from pathlib import Path
+  3: from collections import defaultdict
+  4: import csv
+  5: import xml.etree.ElementTree as ET
+  6: 
+  7: carpeta = Path(__file__).resolve().parent
+  8: 
+  9: escenarios = [
+ 10:     "baja", "media", "alta",
+ 11:     "punta_jp", "punta_avi", "punta_tuneles",
+ 12:     "asimetrico_1", "asimetrico_2"
+ 13: ]
+ 14: semillas = [42, 43, 44]
+ 15: 
+ 16: zonas = {
+ 17:     "e2_jp_sube_bus": "jp_sube",
+ 18:     "e2_jp_sube_priv": "jp_sube",
+ 19:     "e2_jp_baja_bus": "jp_baja",
+ 20:     "e2_jp_baja_priv": "jp_baja",
+ 21:     "e2_tunel_norte_0": "tunel_norte",
+ 22:     "e2_avi_izq_0": "avi_izq",
+ 23:     "e2_avi_izq_1": "avi_izq",
+ 24:     "e2_avi_der_0": "avi_der",
+ 25:     "e2_avi_der_1": "avi_der",
+ 26:     "e2_rampa_0": "rampa_bnp"
+ 27: }
+ 28: 
+ 29: tipos = [
+ 30:     "auto", "camioneta", "moto",
+ 31:     "corredor", "bus_aviacion"
+ 32: ]
+ 33: 
+ 34: entrada = carpeta / "conteos_24_ejecuciones.csv"
+ 35: salida = carpeta / "base_ampliada_ML.csv"
+ 36: 
+ 37: # 1. Leer y agrupar los conteos por tipo
+ 38: conteos = defaultdict(lambda: defaultdict(int))
+ 39: claves_conteo = set()
+ 40: 
+ 41: with entrada.open(
+ 42:     "r", encoding="utf-8-sig", newline=""
+ 43: ) as archivo:
+ 44: 
+ 45:     lector = csv.DictReader(archivo)
+ 46: 
+ 47:     for fila in lector:
+ 48:         clave_detalle = (
+ 49:             fila["escenario"],
+ 50:             int(fila["semilla"]),
+ 51:             int(fila["inicio_s"]),
+ 52:             int(fila["fin_s"]),
+ 53:             fila["zona"],
+ 54:             fila["tipo_vehiculo"]
+ 55:         )
+ 56: 
+ 57:         if clave_detalle in claves_conteo:
+ 58:             raise ValueError(
+ 59:                 f"Conteo duplicado: {clave_detalle}"
+ 60:             )
+ 61: 
+ 62:         claves_conteo.add(clave_detalle)
+ 63: 
+ 64:         clave = clave_detalle[:5]
+ 65:         tipo = clave_detalle[5]
+ 66: 
+ 67:         if tipo not in tipos:
+ 68:             raise ValueError(f"Tipo desconocido: {tipo}")
+ 69: 
+ 70:         conteos[clave][tipo] = int(fila["cantidad"])
+ 71: 
+ 72: if len(claves_conteo) != 8640:
+ 73:     raise ValueError(
+ 74:         f"Se esperaban 8640 conteos, hay "
+ 75:         f"{len(claves_conteo)}"
+ 76:     )
+ 77: 
+ 78: # 2. Integrar con los sensores E2
+ 79: resultados = []
+ 80: claves_sensores = set()
+ 81: 
+ 82: for escenario in escenarios:
+ 83:     for semilla in semillas:
+ 84: 
+ 85:         if semilla == 42:
+ 86:             prefijo = f"{escenario}_"
+ 87:         else:
+ 88:             prefijo = f"rep_s{semilla}_{escenario}_"
+ 89: 
+ 90:         archivo_xml = carpeta / (
+ 91:             prefijo + "salidas_sensores.xml"
+ 92:         )
+ 93: 
+ 94:         if not archivo_xml.exists():
+ 95:             raise FileNotFoundError(archivo_xml.name)
+ 96: 
+ 97:         raiz = ET.parse(archivo_xml).getroot()
+ 98: 
+ 99:         cantidad_e2 = 0
+100: 
+101:         for elemento in raiz.iter("interval"):
+102:             sensor = elemento.get("id")
+103: 
+104:             if sensor not in zonas:
+105:                 raise ValueError(
+106:                     f"Sensor desconocido: {sensor}"
+107:                 )
+108: 
+109:             inicio = round(float(elemento.get("begin")))
+110:             fin = round(float(elemento.get("end")))
+111:             zona = zonas[sensor]
+112: 
+113:             clave_sensor = (
+114:                 escenario, semilla, inicio, fin, sensor
+115:             )
+116: 
+117:             if clave_sensor in claves_sensores:
+118:                 raise ValueError(
+119:                     f"Sensor duplicado: {clave_sensor}"
+120:                 )
+121: 
+122:             claves_sensores.add(clave_sensor)
+123: 
+124:             clave_conteo = (
+125:                 escenario, semilla, inicio, fin, zona
+126:             )
+127: 
+128:             if clave_conteo not in conteos:
+129:                 raise ValueError(
+130:                     f"Conteo faltante: {clave_conteo}"
+131:                 )
+132: 
+133:             vehiculos = conteos[clave_conteo]
+134: 
+135:             registro = {
+136:                 "escenario": escenario,
+137:                 "semilla": semilla,
+138:                 "inicio_s": inicio,
+139:                 "fin_s": fin,
+140:                 "sensor": sensor,
+141:                 "zona": zona
+142:             }
+143: 
+144:             for tipo in tipos:
+145:                 registro[f"n_{tipo}"] = vehiculos[tipo]
+146: 
+147:             registro["n_total_zona"] = sum(
+148:                 vehiculos[tipo] for tipo in tipos
+149:             )
+150: 
+151:             # Conservar todos los indicadores E2
+152:             for atributo, valor in elemento.attrib.items():
+153:                 if atributo not in ("id", "begin", "end"):
+154:                     registro[atributo] = valor
+155: 
+156:             resultados.append(registro)
+157:             cantidad_e2 += 1
+158: 
+159:         if cantidad_e2 != 120:
+160:             raise ValueError(
+161:                 f"{escenario}, semilla {semilla}: "
+162:                 f"{cantidad_e2} filas E2 en lugar de 120"
+163:             )
+164: 
+165: if len(resultados) != 2880:
+166:     raise ValueError(
+167:         f"Se esperaban 2880 filas: {len(resultados)}"
+168:     )
+169: 
+170: # 3. Guardar conservando las columnas disponibles
+171: campos = list(resultados[0].keys())
+172: 
+173: for fila in resultados:
+174:     for nombre in fila:
+175:         if nombre not in campos:
+176:             campos.append(nombre)
+177: 
+178: with salida.open(
+179:     "w", newline="", encoding="utf-8-sig"
+180: ) as archivo:
+181: 
+182:     escritor = csv.DictWriter(
+183:         archivo, fieldnames=campos
+184:     )
+185: 
+186:     escritor.writeheader()
+187:     escritor.writerows(resultados)
+188: 
+189: print("\nINTEGRACION COMPLETADA")
+190: print("=" * 55)
+191: print("Escenarios:", len(escenarios))
+192: print("Semillas:", len(semillas))
+193: print("Ejecuciones:", len(escenarios) * len(semillas))
+194: print("Registros integrados:", len(resultados))
+195: print("Columnas:", len(campos))
+196: print("Archivo:", salida.name)

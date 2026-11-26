@@ -1,0 +1,236 @@
+﻿  1: 
+  2: from pathlib import Path
+  3: import subprocess
+  4: 
+  5: from sumolib import checkBinary
+  6: 
+  7: carpeta = Path(__file__).resolve().parent
+  8: config = carpeta / "simulacion.sumocfg"
+  9: 
+ 10: escenarios = ["baja", "media", "alta"]
+ 11: 
+ 12: if not config.exists():
+ 13:     raise FileNotFoundError(
+ 14:         "No se encontro simulacion.sumocfg"
+ 15:     )
+ 16: 
+ 17: print("\nEJECUCION DE ESCENARIOS SUMO")
+ 18: print("=" * 55)
+ 19: 
+ 20: for nombre in escenarios:
+ 21: 
+ 22:     rutas = carpeta / f"trafico_{nombre}.rou.xml"
+ 23: 
+ 24:     if not rutas.exists():
+ 25:         raise FileNotFoundError(
+ 26:             f"No se encontro {rutas.name}"
+ 27:         )
+ 28: 
+ 29:     print(f"\nEjecutando escenario: {nombre}")
+ 30: 
+ 31:     comando = [
+ 32:         checkBinary("sumo"),
+ 33:         "-c", str(config),
+ 34:         "--route-files", str(rutas),
+ 35:         "--begin", "0",
+ 36:         "--end", "3600",
+ 37:         "--seed", "42",
+ 38:         "--output-prefix", f"{nombre}_",
+ 39:         "--tripinfo-output", "tripinfo.xml",
+ 40:         "--summary-output", "resumen.xml",
+ 41:         "--no-step-log", "true"
+ 42:     ]
+ 43: 
+ 44:     resultado = subprocess.run(
+ 45:         comando,
+ 46:         cwd=carpeta,
+ 47:         capture_output=True,
+ 48:         text=True
+ 49:     )
+ 50: 
+ 51:     if resultado.returncode != 0:
+ 52:         print("ERROR EN EL ESCENARIO:", nombre)
+ 53:         print(resultado.stdout)
+ 54:         print(resultado.stderr)
+ 55:         raise SystemExit(1)
+ 56: 
+ 57:     sensores = carpeta / (
+ 58:         f"{nombre}_salidas_sensores.xml"
+ 59:     )
+ 60: 
+ 61:     viajes = carpeta / f"{nombre}_tripinfo.xml"
+ 62:     resumen = carpeta / f"{nombre}_resumen.xml"
+ 63: 
+ 64:     for archivo in [sensores, viajes, resumen]:
+ 65:         print(
+ 66:             archivo.name,
+ 67:             "|",
+ 68:             "OK" if archivo.exists() else "NO ENCONTRADO"
+ 69:         )
+ 70: 
+ 71:     print("Escenario terminado:", nombre)
+ 72: 
+ 73: print("\nLOS TRES ESCENARIOS FINALIZARON")
+  1: 
+  2: from pathlib import Path
+  3: import subprocess
+  4: 
+  5: from sumolib import checkBinary
+  6: 
+  7: carpeta = Path(__file__).resolve().parent
+  8: config = carpeta / "simulacion.sumocfg"
+  9: 
+ 10: # Excluimos punta_combinada porque
+ 11: # es equivalente al escenario alta.
+ 12: escenarios = [
+ 13:     "punta_jp",
+ 14:     "punta_avi",
+ 15:     "punta_tuneles",
+ 16:     "asimetrico_1",
+ 17:     "asimetrico_2"
+ 18: ]
+ 19: 
+ 20: print("\nEJECUCION DE ESCENARIOS VARIADOS")
+ 21: print("=" * 60)
+ 22: 
+ 23: for nombre in escenarios:
+ 24: 
+ 25:     rutas = carpeta / f"trafico_{nombre}.rou.xml"
+ 26: 
+ 27:     if not rutas.exists():
+ 28:         raise FileNotFoundError(
+ 29:             f"No se encontro {rutas.name}"
+ 30:         )
+ 31: 
+ 32:     print(f"\nEjecutando: {nombre}")
+ 33: 
+ 34:     comando = [
+ 35:         checkBinary("sumo"),
+ 36:         "-c", str(config),
+ 37:         "--route-files", str(rutas),
+ 38:         "--begin", "0",
+ 39:         "--end", "3600",
+ 40:         "--seed", "42",
+ 41:         "--output-prefix", f"{nombre}_",
+ 42:         "--tripinfo-output", "tripinfo.xml",
+ 43:         "--summary-output", "resumen.xml",
+ 44:         "--no-step-log", "true"
+ 45:     ]
+ 46: 
+ 47:     resultado = subprocess.run(
+ 48:         comando,
+ 49:         cwd=carpeta,
+ 50:         capture_output=True,
+ 51:         text=True
+ 52:     )
+ 53: 
+ 54:     if resultado.returncode != 0:
+ 55:         print("ERROR:", nombre)
+ 56:         print(resultado.stdout)
+ 57:         print(resultado.stderr)
+ 58:         raise SystemExit(1)
+ 59: 
+ 60:     archivos = [
+ 61:         carpeta / f"{nombre}_salidas_sensores.xml",
+ 62:         carpeta / f"{nombre}_tripinfo.xml",
+ 63:         carpeta / f"{nombre}_resumen.xml"
+ 64:     ]
+ 65: 
+ 66:     for archivo in archivos:
+ 67:         if not archivo.exists():
+ 68:             raise FileNotFoundError(
+ 69:                 f"No se genero {archivo.name}"
+ 70:             )
+ 71: 
+ 72:         print(archivo.name, "| OK")
+ 73: 
+ 74:     print("Escenario finalizado:", nombre)
+ 75: 
+ 76: print("\nTODOS LOS ESCENARIOS VARIADOS FINALIZARON")
+  1: 
+  2: from pathlib import Path
+  3: import subprocess
+  4: 
+  5: from sumolib import checkBinary
+  6: 
+  7: carpeta = Path(__file__).resolve().parent
+  8: config = carpeta / "simulacion.sumocfg"
+  9: 
+ 10: escenarios = [
+ 11:     "baja",
+ 12:     "media",
+ 13:     "alta",
+ 14:     "punta_jp",
+ 15:     "punta_avi",
+ 16:     "punta_tuneles",
+ 17:     "asimetrico_1",
+ 18:     "asimetrico_2"
+ 19: ]
+ 20: 
+ 21: semillas = [43, 44]
+ 22: 
+ 23: print("\nREPETICION DE ESCENARIOS SUMO")
+ 24: print("=" * 60)
+ 25: 
+ 26: completadas = 0
+ 27: 
+ 28: for semilla in semillas:
+ 29:     for escenario in escenarios:
+ 30: 
+ 31:         rutas = carpeta / f"trafico_{escenario}.rou.xml"
+ 32:         prefijo = f"rep_s{semilla}_{escenario}_"
+ 33: 
+ 34:         if not rutas.exists():
+ 35:             raise FileNotFoundError(rutas.name)
+ 36: 
+ 37:         print(
+ 38:             f"\nEscenario: {escenario} "
+ 39:             f"| Semilla: {semilla}",
+ 40:             flush=True
+ 41:         )
+ 42: 
+ 43:         comando = [
+ 44:             checkBinary("sumo"),
+ 45:             "-c", str(config),
+ 46:             "--route-files", str(rutas),
+ 47:             "--begin", "0",
+ 48:             "--end", "3600",
+ 49:             "--seed", str(semilla),
+ 50:             "--output-prefix", prefijo,
+ 51:             "--tripinfo-output", "tripinfo.xml",
+ 52:             "--summary-output", "resumen.xml",
+ 53:             "--no-step-log", "true"
+ 54:         ]
+ 55: 
+ 56:         resultado = subprocess.run(
+ 57:             comando,
+ 58:             cwd=carpeta,
+ 59:             capture_output=True,
+ 60:             text=True
+ 61:         )
+ 62: 
+ 63:         if resultado.returncode != 0:
+ 64:             print("ERROR EN LA SIMULACION")
+ 65:             print(resultado.stdout)
+ 66:             print(resultado.stderr)
+ 67:             raise SystemExit(1)
+ 68: 
+ 69:         archivos = [
+ 70:             carpeta / f"{prefijo}salidas_sensores.xml",
+ 71:             carpeta / f"{prefijo}tripinfo.xml",
+ 72:             carpeta / f"{prefijo}resumen.xml"
+ 73:         ]
+ 74: 
+ 75:         for archivo in archivos:
+ 76:             if not archivo.exists():
+ 77:                 raise FileNotFoundError(
+ 78:                     f"No se genero: {archivo.name}"
+ 79:                 )
+ 80: 
+ 81:         completadas += 1
+ 82:         print("Resultado: OK", flush=True)
+ 83: 
+ 84: print("\nREPETICIONES FINALIZADAS")
+ 85: print("Nuevas ejecuciones:", completadas)
+ 86: print("Ejecuciones originales:", len(escenarios))
+ 87: print("Total acumulado:", completadas + len(escenarios))

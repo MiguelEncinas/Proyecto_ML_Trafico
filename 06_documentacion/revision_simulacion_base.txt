@@ -1,0 +1,279 @@
+﻿  1: import subprocess
+  2: import sumolib
+  3: 
+  4: # 1. NODOS (Coordenadas en metros)
+  5: NODOS_XML = """<nodes>
+  6:     <!-- Dos cruces semaforizados sobre el puente de AviaciÃ³n -->
+  7:     <node id="J_IZQ" x="-60.0" y="0.0" type="traffic_light" radius="12"/>
+  8:     <node id="J_DER" x="60.0"  y="0.0" type="traffic_light" radius="12"/>
+  9: 
+ 10:     <!-- Extremos de Av. AviaciÃ³n -->
+ 11:     <node id="AVI_IZQ" x="-360.0" y="0.0" type="priority"/>
+ 12:     <node id="AVI_DER" x="360.0"  y="0.0" type="priority"/>
+ 13: 
+ 14:     <!-- Javier Prado Auxiliar (Lado Teatro/BNP: baja con incorporaciÃ³n a media vÃ­a) -->
+ 15:     <node id="JP_ARRIBA_IZQ" x="-60.0" y="300.0"  type="priority"/>
+ 16:     <node id="JP_BAJA_MERGE" x="-60.0" y="180.0"  type="priority"/>
+ 17:     <node id="JP_ABAJO_IZQ"  x="-60.0" y="-300.0" type="priority"/>
+ 18: 
+ 19:     <!-- Javier Prado Auxiliar (Lado La Rambla: sube) -->
+ 20:     <node id="JP_ABAJO_DER"  x="60.0"  y="-300.0" type="priority"/>
+ 21:     <node id="JP_ARRIBA_DER" x="60.0"  y="300.0"  type="priority"/>
+ 22: 
+ 23:     <!-- Conexiones con el tÃºnel (VÃ­a Expresa) -->
+ 24:     <node id="TUNEL_NORTE_IN" x="-10.0" y="300.0"  type="priority"/>
+ 25:     <node id="TUNEL_DESTINO"  x="-10.0" y="140.0"  type="priority"/>
+ 26:     <node id="TUNEL_SUR_BNP"  x="-10.0" y="-240.0" type="priority"/>
+ 27:     <node id="BNP_RAMPA_BASE" x="-30.0" y="-110.0" type="priority"/>
+ 28: </nodes>
+ 29: """
+ 30: 
+ 31: # 2. CALLES Y CARRILES
+ 32: # Avenidas principales: 2 carriles por sentido (mismo grosor).
+ 33: # En Javier Prado arriba: carril 0 = Corredor Rojo (media vÃ­a), carril 1 = particulares y motos.
+ 34: # Conexiones al tÃºnel: 1 carril angosto, unidireccional, SOLO particulares y camionetas (passenger).
+ 35: CALLES_XML = """<edges>
+ 36:     <!-- Javier Prado Auxiliar SUBIENDO (Lado La Rambla -> Financiera OH) -->
+ 37:     <edge id="jp_sube_sur" from="JP_ABAJO_DER" to="J_DER" numLanes="2" speed="13.89">
+ 38:         <lane index="0" allow="bus"/>
+ 39:         <lane index="1" disallow="bus"/>
+ 40:     </edge>
+ 41:     <edge id="jp_sube_norte" from="J_DER" to="JP_ARRIBA_DER" numLanes="2" speed="13.89">
+ 42:         <lane index="0" allow="bus"/>
+ 43:         <lane index="1" disallow="bus"/>
+ 44:     </edge>
+ 45: 
+ 46:     <!-- Javier Prado Auxiliar BAJANDO (Lado Teatro -> BNP) -->
+ 47:     <edge id="jp_baja_norte_1" from="JP_ARRIBA_IZQ" to="JP_BAJA_MERGE" numLanes="2" speed="13.89">
+ 48:         <lane index="0" allow="bus"/>
+ 49:         <lane index="1" disallow="bus"/>
+ 50:     </edge>
+ 51:     <edge id="jp_baja_norte_2" from="JP_BAJA_MERGE" to="J_IZQ" numLanes="2" speed="13.89">
+ 52:         <lane index="0" allow="bus"/>
+ 53:         <lane index="1" disallow="bus"/>
+ 54:     </edge>
+ 55:     <edge id="jp_baja_sur" from="J_IZQ" to="JP_ABAJO_IZQ" numLanes="2" speed="13.89">
+ 56:         <lane index="0" allow="bus"/>
+ 57:         <lane index="1" disallow="bus"/>
+ 58:     </edge>
+ 59: 
+ 60:     <!-- AlimentaciÃ³n desde el tÃºnel norte a media avenida (1 carril, SOLO particulares/camionetas) -->
+ 61:     <edge id="salida_tunel_teatro" from="TUNEL_NORTE_IN" to="JP_BAJA_MERGE" numLanes="1" speed="11.11" allow="passenger"
+ 62:           shape="-10,300 -10,250 -25,210 -60,180"/>
+ 63: 
+ 64:     <!-- Rampa ENTRANDO desde AviaciÃ³n (solo este->oeste) hacia el tÃºnel (1 carril, SOLO particulares/camionetas) -->
+ 65:     <edge id="rampa_hacia_tunel" from="J_IZQ" to="TUNEL_DESTINO" numLanes="1" speed="11.11" allow="passenger"
+ 66:           shape="-60,0 -45,45 -20,95 -10,140"/>
+ 67: 
+ 68:     <!-- Rampa SALIENDO del tÃºnel sur (BNP) hacia AviaciÃ³n Este (1 carril, SOLO particulares/camionetas) -->
+ 69:     <edge id="entrada_tunel_bnp" from="TUNEL_SUR_BNP" to="BNP_RAMPA_BASE" numLanes="1" speed="11.11" allow="passenger"
+ 70:           shape="-10,-240 -12,-180 -22,-140 -30,-110"/>
+ 71:     <edge id="rampa_bnp" from="BNP_RAMPA_BASE" to="J_IZQ" numLanes="1" speed="11.11" allow="passenger"
+ 72:           shape="-30,-110 -36,-65 -48,-30 -60,0"/>
+ 73: 
+ 74:     <!-- Av. AviaciÃ³n (2 carriles por sentido: buses pÃºblicos + particulares) -->
+ 75:     <edge id="avi_izq_in"   from="AVI_IZQ" to="J_IZQ"   numLanes="2" speed="13.89"/>
+ 76:     <edge id="avi_izq_out"  from="J_IZQ"   to="AVI_IZQ" numLanes="2" speed="13.89"/>
+ 77:     <edge id="puente_a_der" from="J_IZQ"   to="J_DER"   numLanes="2" speed="11.11"/>
+ 78:     <edge id="puente_a_izq" from="J_DER"   to="J_IZQ"   numLanes="2" speed="11.11"/>
+ 79:     <edge id="avi_der_out"  from="J_DER"   to="AVI_DER" numLanes="2" speed="13.89"/>
+ 80:     <edge id="avi_der_in"   from="AVI_DER" to="J_DER"   numLanes="2" speed="13.89"/>
+ 81: </edges>
+ 82: """
+ 83: 
+ 84: # 3. CONEXIONES EXPLÃCITAS
+ 85: CONEXIONES_XML = """<connections>
+ 86:     <!-- IncorporaciÃ³n a media avenida en JP_BAJA_MERGE -->
+ 87:     <connection from="jp_baja_norte_1"     to="jp_baja_norte_2" fromLane="0" toLane="0"/>
+ 88:     <connection from="jp_baja_norte_1"     to="jp_baja_norte_2" fromLane="1" toLane="1"/>
+ 89:     <connection from="salida_tunel_teatro" to="jp_baja_norte_2" fromLane="0" toLane="1"/>
+ 90: 
+ 91:     <!-- Javier Prado bajando en J_IZQ -->
+ 92:     <connection from="jp_baja_norte_2" to="jp_baja_sur" fromLane="0" toLane="0"/>
+ 93:     <connection from="jp_baja_norte_2" to="jp_baja_sur" fromLane="1" toLane="1"/>
+ 94:     <connection from="jp_baja_norte_2" to="avi_izq_out" fromLane="1" toLane="0"/>
+ 95: 
+ 96:     <!-- Salida del tÃºnel sur (BNP): ÃšNICAMENTE hacia el este (puente_a_der) -->
+ 97:     <connection from="rampa_bnp" to="puente_a_der" fromLane="0" toLane="0"/>
+ 98: 
+ 99:     <!-- AviaciÃ³n de OESTE a ESTE (avi_izq_in): NO puede entrar al tÃºnel -->
+100:     <connection from="avi_izq_in" to="puente_a_der" fromLane="0" toLane="0"/>
+101:     <connection from="avi_izq_in" to="puente_a_der" fromLane="1" toLane="1"/>
+102:     <connection from="avi_izq_in" to="jp_baja_sur"  fromLane="0" toLane="1"/>
+103: 
+104:     <!-- AviaciÃ³n de ESTE a OESTE (puente_a_izq): ÃšNICA vÃ­a que entra al tÃºnel -->
+105:     <connection from="puente_a_izq" to="avi_izq_out"       fromLane="0" toLane="0"/>
+106:     <connection from="puente_a_izq" to="avi_izq_out"       fromLane="1" toLane="1"/>
+107:     <connection from="puente_a_izq" to="rampa_hacia_tunel" fromLane="0" toLane="0"/>
+108:     <connection from="puente_a_izq" to="jp_baja_sur"       fromLane="1" toLane="1"/>
+109: 
+110:     <!-- Javier Prado subiendo en J_DER -->
+111:     <connection from="jp_sube_sur" to="jp_sube_norte" fromLane="0" toLane="0"/>
+112:     <connection from="jp_sube_sur" to="jp_sube_norte" fromLane="1" toLane="1"/>
+113:     <connection from="jp_sube_sur" to="avi_der_out"   fromLane="1" toLane="0"/>
+114: 
+115:     <!-- AviaciÃ³n desde derecha (este->oeste) en J_DER -->
+116:     <connection from="avi_der_in" to="puente_a_izq"  fromLane="0" toLane="0"/>
+117:     <connection from="avi_der_in" to="puente_a_izq"  fromLane="1" toLane="1"/>
+118:     <connection from="avi_der_in" to="jp_sube_norte" fromLane="0" toLane="1"/>
+119: 
+120:     <!-- Puente hacia derecha (oeste->este) en J_DER -->
+121:     <connection from="puente_a_der" to="avi_der_out"   fromLane="0" toLane="0"/>
+122:     <connection from="puente_a_der" to="avi_der_out"   fromLane="1" toLane="1"/>
+123:     <connection from="puente_a_der" to="jp_sube_norte" fromLane="1" toLane="1"/>
+124: </connections>
+125: """
+126: 
+127: # 4. PARADEROS Y SENSORES DE ÃREA (E2 UPSTREAM)
+128: ADICIONALES_XML = """<additional>
+129:     <!-- Paraderos reales -->
+130:     <busStop id="paradero_rambla"  lane="jp_sube_sur_0"     startPos="160" endPos="200" name="Paradero La Rambla (Corredor)"/>
+131:     <busStop id="paradero_teatro"  lane="jp_baja_norte_2_0" startPos="60"  endPos="100" name="Paradero Teatro Nacional (Corredor)"/>
+132:     <busStop id="paradero_cultura" lane="avi_izq_in_0"      startPos="170" endPos="210" name="Estacion La Cultura"/>
+133:     <busStop id="paradero_tambo"   lane="avi_der_in_0"      startPos="170" endPos="210" name="Paradero Aviacion / Tambo"/>
+134: 
+135:     <!-- Detectores de Ã¡rea (E2) ajustados al nÃºmero exacto de carriles -->
+136:     <laneAreaDetector id="e2_jp_sube_bus"   lane="jp_sube_sur_0"     pos="50" length="200" freq="300" file="salidas_sensores.xml"/>
+137:     <laneAreaDetector id="e2_jp_sube_priv"  lane="jp_sube_sur_1"     pos="50" length="200" freq="300" file="salidas_sensores.xml"/>
+138: 
+139:     <laneAreaDetector id="e2_jp_baja_bus"   lane="jp_baja_norte_2_0" pos="10" length="140" freq="300" file="salidas_sensores.xml"/>
+140:     <laneAreaDetector id="e2_jp_baja_priv"  lane="jp_baja_norte_2_1" pos="10" length="140" freq="300" file="salidas_sensores.xml"/>
+141: 
+142:     <laneAreaDetector id="e2_tunel_norte_0" lane="salida_tunel_teatro_0" pos="15" length="90" freq="300" file="salidas_sensores.xml"/>
+143: 
+144:     <laneAreaDetector id="e2_avi_izq_0" lane="avi_izq_in_0" pos="60" length="200" freq="300" file="salidas_sensores.xml"/>
+145:     <laneAreaDetector id="e2_avi_izq_1" lane="avi_izq_in_1" pos="60" length="200" freq="300" file="salidas_sensores.xml"/>
+146: 
+147:     <laneAreaDetector id="e2_avi_der_0" lane="avi_der_in_0" pos="60" length="200" freq="300" file="salidas_sensores.xml"/>
+148:     <laneAreaDetector id="e2_avi_der_1" lane="avi_der_in_1" pos="60" length="200" freq="300" file="salidas_sensores.xml"/>
+149: 
+150:     <laneAreaDetector id="e2_rampa_0"   lane="rampa_bnp_0"  pos="10" length="80"  freq="300" file="salidas_sensores.xml"/>
+151: </additional>
+152: """
+153: 
+154: # 5. TRÃFICO DE PRUEBA (1 hora simulada)
+155: RUTAS_XML = """<routes>
+156:     <!-- Tipos de vehÃ­culos -->
+157:     <vType id="auto"         vClass="passenger"  length="4.5"  maxSpeed="13.89" color="255,220,0"/>
+158:     <vType id="camioneta"    vClass="passenger"  length="5.3"  maxSpeed="13.89" color="180,180,180"/>
+159:     <vType id="moto"         vClass="motorcycle" length="2.2"  maxSpeed="15.0"  color="255,120,0"/>
+160:     <vType id="corredor"     vClass="bus"        length="12.0" maxSpeed="11.11" color="220,20,20"/>
+161:     <vType id="bus_aviacion" vClass="bus"        length="10.5" maxSpeed="11.11" color="30,110,220"/>
+162: 
+163:     <!-- Rutas Javier Prado (arriba) -->
+164:     <route id="r_jp_sube"          edges="jp_sube_sur jp_sube_norte"/>
+165:     <route id="r_jp_sube_der"      edges="jp_sube_sur avi_der_out"/>
+166:     <route id="r_jp_baja"          edges="jp_baja_norte_1 jp_baja_norte_2 jp_baja_sur"/>
+167:     <route id="r_jp_baja_der"      edges="jp_baja_norte_1 jp_baja_norte_2 avi_izq_out"/>
+168: 
+169:     <!-- AlimentaciÃ³n desde tÃºnel norte a media avenida (SOLO particulares/camionetas) -->
+170:     <route id="r_tunel_norte_baja" edges="salida_tunel_teatro jp_baja_norte_2 jp_baja_sur"/>
+171:     <route id="r_tunel_norte_avi"  edges="salida_tunel_teatro jp_baja_norte_2 avi_izq_out"/>
+172: 
+173:     <!-- Rutas Av. AviaciÃ³n (todo de frente) -->
+174:     <route id="r_avi_hacia_der"    edges="avi_izq_in puente_a_der avi_der_out"/>
+175:     <route id="r_avi_hacia_izq"    edges="avi_der_in puente_a_izq avi_izq_out"/>
+176: 
+177:     <!-- Particulares girando desde AviaciÃ³n hacia JP o hacia el tÃºnel (SOLO este->oeste al tÃºnel) -->
+178:     <route id="r_avi_izq_a_jp"     edges="avi_izq_in jp_baja_sur"/>
+179:     <route id="r_avi_der_a_jp"     edges="avi_der_in jp_sube_norte"/>
+180:     <route id="r_avi_der_a_tunel"  edges="avi_der_in puente_a_izq rampa_hacia_tunel"/>
+181: 
+182:     <!-- Salida del tÃºnel sur (BNP) -> AviaciÃ³n Este (SOLO particulares/camionetas) -->
+183:     <route id="r_tunel_bnp_este"   edges="entrada_tunel_bnp rampa_bnp puente_a_der avi_der_out"/>
+184: 
+185:     <!-- 1. Corredor Rojo (SOLO por arriba en su carril segregado) -->
+186:     <flow id="f_corredor_sube" type="corredor" route="r_jp_sube" begin="0" end="3600" vehsPerHour="45">
+187:         <stop busStop="paradero_rambla" duration="20"/>
+188:     </flow>
+189:     <flow id="f_corredor_baja" type="corredor" route="r_jp_baja" begin="0" end="3600" vehsPerHour="40">
+190:         <stop busStop="paradero_teatro" duration="20"/>
+191:     </flow>
+192: 
+193:     <!-- 2. Particulares, camionetas y motos en Javier Prado (arriba) -->
+194:     <flow id="f_jp_sube_auto" type="auto"      route="r_jp_sube"     begin="0" end="3600" vehsPerHour="260"/>
+195:     <flow id="f_jp_sube_cam"  type="camioneta" route="r_jp_sube"     begin="0" end="3600" vehsPerHour="100"/>
+196:     <flow id="f_jp_sube_moto" type="moto"      route="r_jp_sube"     begin="0" end="3600" vehsPerHour="90"/>
+197:     <flow id="f_jp_sube_giro" type="auto"      route="r_jp_sube_der" begin="0" end="3600" vehsPerHour="80"/>
+198: 
+199:     <flow id="f_jp_baja_auto" type="auto"      route="r_jp_baja"     begin="0" end="3600" vehsPerHour="200"/>
+200:     <flow id="f_jp_baja_cam"  type="camioneta" route="r_jp_baja"     begin="0" end="3600" vehsPerHour="80"/>
+201:     <flow id="f_jp_baja_moto" type="moto"      route="r_jp_baja"     begin="0" end="3600" vehsPerHour="80"/>
+202:     <flow id="f_jp_baja_giro" type="auto"      route="r_jp_baja_der" begin="0" end="3600" vehsPerHour="60"/>
+203: 
+204:     <!-- AlimentaciÃ³n desde tÃºnel norte (SOLO particulares y camionetas) -->
+205:     <flow id="f_tunel_n_auto" type="auto"      route="r_tunel_norte_baja" begin="0" end="3600" vehsPerHour="120"/>
+206:     <flow id="f_tunel_n_cam"  type="camioneta" route="r_tunel_norte_baja" begin="0" end="3600" vehsPerHour="60"/>
+207:     <flow id="f_tunel_n_avi"  type="auto"      route="r_tunel_norte_avi"  begin="0" end="3600" vehsPerHour="50"/>
+208: 
+209:     <!-- 3. Av. AviaciÃ³n: Buses pÃºblicos en mayor proporciÃ³n (SOLO de frente) + particulares -->
+210:     <flow id="f_avi_der_bus"  type="bus_aviacion" route="r_avi_hacia_der" begin="0" end="3600" vehsPerHour="180">
+211:         <stop busStop="paradero_cultura" duration="18"/>
+212:     </flow>
+213:     <flow id="f_avi_der_auto" type="auto"         route="r_avi_hacia_der" begin="0" end="3600" vehsPerHour="140"/>
+214:     <flow id="f_avi_der_cam"  type="camioneta"    route="r_avi_hacia_der" begin="0" end="3600" vehsPerHour="55"/>
+215: 
+216:     <flow id="f_avi_izq_bus"  type="bus_aviacion" route="r_avi_hacia_izq" begin="0" end="3600" vehsPerHour="175">
+217:         <stop busStop="paradero_tambo" duration="18"/>
+218:     </flow>
+219:     <flow id="f_avi_izq_auto" type="auto"         route="r_avi_hacia_izq" begin="0" end="3600" vehsPerHour="130"/>
+220:     <flow id="f_avi_izq_cam"  type="camioneta"    route="r_avi_hacia_izq" begin="0" end="3600" vehsPerHour="50"/>
+221: 
+222:     <!-- 4. Particulares desde AviaciÃ³n hacia JP o hacia el tÃºnel (SOLO este->oeste) -->
+223:     <flow id="f_avi_izq_jp"    type="auto"      route="r_avi_izq_a_jp"    begin="0" end="3600" vehsPerHour="70"/>
+224:     <flow id="f_avi_der_jp"    type="auto"      route="r_avi_der_a_jp"    begin="0" end="3600" vehsPerHour="70"/>
+225:     <flow id="f_avi_der_tunel" type="auto"      route="r_avi_der_a_tunel" begin="0" end="3600" vehsPerHour="90"/>
+226:     <flow id="f_avi_der_tun_c" type="camioneta" route="r_avi_der_a_tunel" begin="0" end="3600" vehsPerHour="50"/>
+227: 
+228:     <!-- 5. TÃºnel sur (BNP) -> AviaciÃ³n Este (SOLO particulares y camionetas) -->
+229:     <flow id="f_tunel_bnp_auto" type="auto"      route="r_tunel_bnp_este" begin="0" end="3600" vehsPerHour="120"/>
+230:     <flow id="f_tunel_bnp_cam"  type="camioneta" route="r_tunel_bnp_este" begin="0" end="3600" vehsPerHour="70"/>
+231: </routes>
+232: """
+233: 
+234: # 6. ARCHIVO DE CONFIGURACIÃ“N DE SUMO
+235: CONFIG_XML = """<configuration>
+236:     <input>
+237:         <net-file value="jp_aviacion.net.xml"/>
+238:         <route-files value="trafico_prueba.rou.xml"/>
+239:         <additional-files value="adicionales.add.xml"/>
+240:     </input>
+241:     <time>
+242:         <begin value="0"/>
+243:         <end value="3600"/>
+244:     </time>
+245: </configuration>
+246: """
+247: 
+248: def main():
+249:     archivos = {
+250:         "jp_aviacion.nod.xml": NODOS_XML,
+251:         "jp_aviacion.edg.xml": CALLES_XML,
+252:         "jp_aviacion.con.xml": CONEXIONES_XML,
+253:         "adicionales.add.xml": ADICIONALES_XML,
+254:         "trafico_prueba.rou.xml": RUTAS_XML,
+255:         "simulacion.sumocfg": CONFIG_XML,
+256:     }
+257:     for nombre, contenido in archivos.items():
+258:         with open(nombre, "w", encoding="utf-8") as f:
+259:             f.write(contenido)
+260:     print("Archivos XML generados correctamente.")
+261: 
+262:     netconvert_bin = sumolib.checkBinary("netconvert")
+263:     cmd = [
+264:         netconvert_bin,
+265:         "--node-files", "jp_aviacion.nod.xml",
+266:         "--edge-files", "jp_aviacion.edg.xml",
+267:         "--connection-files", "jp_aviacion.con.xml",
+268:         "--output-file", "jp_aviacion.net.xml",
+269:         "--no-turnarounds", "true",
+270:     ]
+271:     subprocess.run(cmd, check=True)
+272:     print("Red compilada: jp_aviacion.net.xml")
+273: 
+274:     sumo_gui_bin = sumolib.checkBinary("sumo-gui")
+275:     subprocess.Popen([sumo_gui_bin, "-c", "simulacion.sumocfg"])
+276:     print("Abriendo SUMO-GUI...")
+277: 
+278: if __name__ == "__main__":
+279:     main()

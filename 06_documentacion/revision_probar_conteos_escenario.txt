@@ -1,0 +1,167 @@
+﻿  1: 
+  2: from pathlib import Path
+  3: from collections import defaultdict
+  4: import csv
+  5: 
+  6: import traci
+  7: from sumolib import checkBinary
+  8: 
+  9: carpeta = Path(__file__).resolve().parent
+ 10: 
+ 11: escenario = "punta_jp"
+ 12: semilla = 43
+ 13: intervalo = 300
+ 14: duracion = 3600
+ 15: 
+ 16: config = carpeta / "simulacion.sumocfg"
+ 17: rutas = carpeta / f"trafico_{escenario}.rou.xml"
+ 18: 
+ 19: salida = carpeta / "prueba_conteos_punta_jp_s43.csv"
+ 20: 
+ 21: zonas = {
+ 22:     "jp_sube": [
+ 23:         "e2_jp_sube_bus",
+ 24:         "e2_jp_sube_priv"
+ 25:     ],
+ 26:     "jp_baja": [
+ 27:         "e2_jp_baja_bus",
+ 28:         "e2_jp_baja_priv"
+ 29:     ],
+ 30:     "tunel_norte": [
+ 31:         "e2_tunel_norte_0"
+ 32:     ],
+ 33:     "avi_izq": [
+ 34:         "e2_avi_izq_0",
+ 35:         "e2_avi_izq_1"
+ 36:     ],
+ 37:     "avi_der": [
+ 38:         "e2_avi_der_0",
+ 39:         "e2_avi_der_1"
+ 40:     ],
+ 41:     "rampa_bnp": [
+ 42:         "e2_rampa_0"
+ 43:     ]
+ 44: }
+ 45: 
+ 46: tipos = [
+ 47:     "auto",
+ 48:     "camioneta",
+ 49:     "moto",
+ 50:     "corredor",
+ 51:     "bus_aviacion"
+ 52: ]
+ 53: 
+ 54: vistos = {zona: set() for zona in zonas}
+ 55: conteos = defaultdict(int)
+ 56: 
+ 57: comando = [
+ 58:     checkBinary("sumo"),
+ 59:     "-c", str(config),
+ 60:     "--route-files", str(rutas),
+ 61:     "--begin", "0",
+ 62:     "--end", str(duracion),
+ 63:     "--seed", str(semilla),
+ 64:     "--output-prefix", "prueba_conteos_",
+ 65:     "--no-step-log", "true"
+ 66: ]
+ 67: 
+ 68: try:
+ 69:     traci.start(comando)
+ 70: 
+ 71:     disponibles = set(traci.lanearea.getIDList())
+ 72: 
+ 73:     for zona, sensores in zonas.items():
+ 74:         for sensor in sensores:
+ 75:             if sensor not in disponibles:
+ 76:                 raise ValueError(
+ 77:                     f"Sensor no encontrado: {sensor}"
+ 78:                 )
+ 79: 
+ 80:     while traci.simulation.getTime() < duracion:
+ 81: 
+ 82:         traci.simulationStep()
+ 83:         tiempo = traci.simulation.getTime()
+ 84: 
+ 85:         bloque = min(
+ 86:             int(max(0, tiempo - 0.000001) // intervalo),
+ 87:             duracion // intervalo - 1
+ 88:         )
+ 89: 
+ 90:         for zona, sensores in zonas.items():
+ 91: 
+ 92:             detectados = set()
+ 93: 
+ 94:             for sensor in sensores:
+ 95:                 detectados.update(
+ 96:                     traci.lanearea.getLastStepVehicleIDs(
+ 97:                         sensor
+ 98:                     )
+ 99:                 )
+100: 
+101:             nuevos = detectados - vistos[zona]
+102: 
+103:             for vehiculo in nuevos:
+104:                 tipo = traci.vehicle.getTypeID(vehiculo)
+105: 
+106:                 if tipo not in tipos:
+107:                     raise ValueError(
+108:                         f"Tipo inesperado: {tipo}"
+109:                     )
+110: 
+111:                 conteos[(bloque, zona, tipo)] += 1
+112: 
+113:             vistos[zona].update(nuevos)
+114: 
+115: finally:
+116:     if traci.isLoaded():
+117:         traci.close()
+118: 
+119: with salida.open(
+120:     "w", newline="", encoding="utf-8-sig"
+121: ) as archivo:
+122: 
+123:     escritor = csv.writer(archivo)
+124: 
+125:     escritor.writerow([
+126:         "escenario",
+127:         "semilla",
+128:         "inicio_s",
+129:         "fin_s",
+130:         "zona",
+131:         "tipo_vehiculo",
+132:         "cantidad"
+133:     ])
+134: 
+135:     for bloque in range(duracion // intervalo):
+136:         for zona in zonas:
+137:             for tipo in tipos:
+138: 
+139:                 escritor.writerow([
+140:                     escenario,
+141:                     semilla,
+142:                     bloque * intervalo,
+143:                     (bloque + 1) * intervalo,
+144:                     zona,
+145:                     tipo,
+146:                     conteos[(bloque, zona, tipo)]
+147:                 ])
+148: 
+149: print("\nPRUEBA DE CONTEOS POR ESCENARIO")
+150: print("=" * 55)
+151: print("Escenario:", escenario)
+152: print("Semilla:", semilla)
+153: print("Archivo:", salida.name)
+154: print("Registros:", 12 * len(zonas) * len(tipos))
+155: 
+156: for zona in zonas:
+157:     print(
+158:         zona + ":",
+159:         sum(
+160:             cantidad
+161:             for (bloque, nombre, tipo), cantidad
+162:             in conteos.items()
+163:             if nombre == zona
+164:         )
+165:     )
+166: 
+167: print("PRUEBA FINALIZADA")

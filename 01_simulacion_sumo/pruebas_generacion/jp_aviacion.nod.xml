@@ -1,0 +1,24 @@
+<nodes>
+    <!-- Dos cruces semaforizados sobre el puente de Aviación -->
+    <node id="J_IZQ" x="-60.0" y="0.0" type="traffic_light" radius="12"/>
+    <node id="J_DER" x="60.0"  y="0.0" type="traffic_light" radius="12"/>
+
+    <!-- Extremos de Av. Aviación -->
+    <node id="AVI_IZQ" x="-360.0" y="0.0" type="priority"/>
+    <node id="AVI_DER" x="360.0"  y="0.0" type="priority"/>
+
+    <!-- Javier Prado Auxiliar (Lado Teatro/BNP: baja con incorporación a media vía) -->
+    <node id="JP_ARRIBA_IZQ" x="-60.0" y="300.0"  type="priority"/>
+    <node id="JP_BAJA_MERGE" x="-60.0" y="180.0"  type="priority"/>
+    <node id="JP_ABAJO_IZQ"  x="-60.0" y="-300.0" type="priority"/>
+
+    <!-- Javier Prado Auxiliar (Lado La Rambla: sube) -->
+    <node id="JP_ABAJO_DER"  x="60.0"  y="-300.0" type="priority"/>
+    <node id="JP_ARRIBA_DER" x="60.0"  y="300.0"  type="priority"/>
+
+    <!-- Conexiones con el túnel (Vía Expresa) -->
+    <node id="TUNEL_NORTE_IN" x="-10.0" y="300.0"  type="priority"/>
+    <node id="TUNEL_DESTINO"  x="-10.0" y="140.0"  type="priority"/>
+    <node id="TUNEL_SUR_BNP"  x="-10.0" y="-240.0" type="priority"/>
+    <node id="BNP_RAMPA_BASE" x="-30.0" y="-110.0" type="priority"/>
+</nodes>

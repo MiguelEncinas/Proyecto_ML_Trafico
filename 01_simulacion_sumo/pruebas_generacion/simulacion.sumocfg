@@ -1,0 +1,11 @@
+<configuration>
+    <input>
+        <net-file value="jp_aviacion.net.xml"/>
+        <route-files value="trafico_prueba.rou.xml"/>
+        <additional-files value="adicionales.add.xml"/>
+    </input>
+    <time>
+        <begin value="0"/>
+        <end value="3600"/>
+    </time>
+</configuration>

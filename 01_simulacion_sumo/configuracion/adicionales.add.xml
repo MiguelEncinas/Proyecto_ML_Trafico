@@ -1,0 +1,24 @@
+<additional>
+    <!-- Paraderos reales -->
+    <busStop id="paradero_rambla"  lane="jp_sube_sur_0"     startPos="160" endPos="200" name="Paradero La Rambla (Corredor)"/>
+    <busStop id="paradero_teatro"  lane="jp_baja_norte_2_0" startPos="60"  endPos="100" name="Paradero Teatro Nacional (Corredor)"/>
+    <busStop id="paradero_cultura" lane="avi_izq_in_0"      startPos="170" endPos="210" name="Estacion La Cultura"/>
+    <busStop id="paradero_tambo"   lane="avi_der_in_0"      startPos="170" endPos="210" name="Paradero Aviacion / Tambo"/>
+
+    <!-- Detectores de área (E2) ajustados al número exacto de carriles -->
+    <laneAreaDetector id="e2_jp_sube_bus"   lane="jp_sube_sur_0"     pos="50" length="200" freq="300" file="salidas_sensores.xml"/>
+    <laneAreaDetector id="e2_jp_sube_priv"  lane="jp_sube_sur_1"     pos="50" length="200" freq="300" file="salidas_sensores.xml"/>
+
+    <laneAreaDetector id="e2_jp_baja_bus"   lane="jp_baja_norte_2_0" pos="10" length="140" freq="300" file="salidas_sensores.xml"/>
+    <laneAreaDetector id="e2_jp_baja_priv"  lane="jp_baja_norte_2_1" pos="10" length="140" freq="300" file="salidas_sensores.xml"/>
+
+    <laneAreaDetector id="e2_tunel_norte_0" lane="salida_tunel_teatro_0" pos="15" length="90" freq="300" file="salidas_sensores.xml"/>
+
+    <laneAreaDetector id="e2_avi_izq_0" lane="avi_izq_in_0" pos="60" length="200" freq="300" file="salidas_sensores.xml"/>
+    <laneAreaDetector id="e2_avi_izq_1" lane="avi_izq_in_1" pos="60" length="200" freq="300" file="salidas_sensores.xml"/>
+
+    <laneAreaDetector id="e2_avi_der_0" lane="avi_der_in_0" pos="60" length="200" freq="300" file="salidas_sensores.xml"/>
+    <laneAreaDetector id="e2_avi_der_1" lane="avi_der_in_1" pos="60" length="200" freq="300" file="salidas_sensores.xml"/>
+
+    <laneAreaDetector id="e2_rampa_0"   lane="rampa_bnp_0"  pos="10" length="80"  freq="300" file="salidas_sensores.xml"/>
+</additional>

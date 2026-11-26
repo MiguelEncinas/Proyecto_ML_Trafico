@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='utf-8'?>
+<routes>
+    
+    <vType id="auto" vClass="passenger" length="4.5" maxSpeed="13.89" color="255,220,0" />
+    <vType id="camioneta" vClass="passenger" length="5.3" maxSpeed="13.89" color="180,180,180" />
+    <vType id="moto" vClass="motorcycle" length="2.2" maxSpeed="15.0" color="255,120,0" />
+    <vType id="corredor" vClass="bus" length="12.0" maxSpeed="11.11" color="220,20,20" />
+    <vType id="bus_aviacion" vClass="bus" length="10.5" maxSpeed="11.11" color="30,110,220" />
+
+    
+    <route id="r_jp_sube" edges="jp_sube_sur jp_sube_norte" />
+    <route id="r_jp_sube_der" edges="jp_sube_sur avi_der_out" />
+    <route id="r_jp_baja" edges="jp_baja_norte_1 jp_baja_norte_2 jp_baja_sur" />
+    <route id="r_jp_baja_der" edges="jp_baja_norte_1 jp_baja_norte_2 avi_izq_out" />
+
+    
+    <route id="r_tunel_norte_baja" edges="salida_tunel_teatro jp_baja_norte_2 jp_baja_sur" />
+    <route id="r_tunel_norte_avi" edges="salida_tunel_teatro jp_baja_norte_2 avi_izq_out" />
+
+    
+    <route id="r_avi_hacia_der" edges="avi_izq_in puente_a_der avi_der_out" />
+    <route id="r_avi_hacia_izq" edges="avi_der_in puente_a_izq avi_izq_out" />
+
+    
+    <route id="r_avi_izq_a_jp" edges="avi_izq_in jp_baja_sur" />
+    <route id="r_avi_der_a_jp" edges="avi_der_in jp_sube_norte" />
+    <route id="r_avi_der_a_tunel" edges="avi_der_in puente_a_izq rampa_hacia_tunel" />
+
+    
+    <route id="r_tunel_bnp_este" edges="entrada_tunel_bnp rampa_bnp puente_a_der avi_der_out" />
+
+    
+    <flow id="f_corredor_sube" type="corredor" route="r_jp_sube" begin="0" end="3600" vehsPerHour="76.500">
+        <stop busStop="paradero_rambla" duration="20" />
+    </flow>
+    <flow id="f_corredor_baja" type="corredor" route="r_jp_baja" begin="0" end="3600" vehsPerHour="32.000">
+        <stop busStop="paradero_teatro" duration="20" />
+    </flow>
+
+    
+    <flow id="f_jp_sube_auto" type="auto" route="r_jp_sube" begin="0" end="3600" vehsPerHour="442.000" />
+    <flow id="f_jp_sube_cam" type="camioneta" route="r_jp_sube" begin="0" end="3600" vehsPerHour="170.000" />
+    <flow id="f_jp_sube_moto" type="moto" route="r_jp_sube" begin="0" end="3600" vehsPerHour="153.000" />
+    <flow id="f_jp_sube_giro" type="auto" route="r_jp_sube_der" begin="0" end="3600" vehsPerHour="136.000" />
+
+    <flow id="f_jp_baja_auto" type="auto" route="r_jp_baja" begin="0" end="3600" vehsPerHour="160.000" />
+    <flow id="f_jp_baja_cam" type="camioneta" route="r_jp_baja" begin="0" end="3600" vehsPerHour="64.000" />
+    <flow id="f_jp_baja_moto" type="moto" route="r_jp_baja" begin="0" end="3600" vehsPerHour="64.000" />
+    <flow id="f_jp_baja_giro" type="auto" route="r_jp_baja_der" begin="0" end="3600" vehsPerHour="48.000" />
+
+    
+    <flow id="f_tunel_n_auto" type="auto" route="r_tunel_norte_baja" begin="0" end="3600" vehsPerHour="120.000" />
+    <flow id="f_tunel_n_cam" type="camioneta" route="r_tunel_norte_baja" begin="0" end="3600" vehsPerHour="60.000" />
+    <flow id="f_tunel_n_avi" type="auto" route="r_tunel_norte_avi" begin="0" end="3600" vehsPerHour="50.000" />
+
+    
+    <flow id="f_avi_der_bus" type="bus_aviacion" route="r_avi_hacia_der" begin="0" end="3600" vehsPerHour="180.000">
+        <stop busStop="paradero_cultura" duration="18" />
+    </flow>
+    <flow id="f_avi_der_auto" type="auto" route="r_avi_hacia_der" begin="0" end="3600" vehsPerHour="140.000" />
+    <flow id="f_avi_der_cam" type="camioneta" route="r_avi_hacia_der" begin="0" end="3600" vehsPerHour="55.000" />
+
+    <flow id="f_avi_izq_bus" type="bus_aviacion" route="r_avi_hacia_izq" begin="0" end="3600" vehsPerHour="175.000">
+        <stop busStop="paradero_tambo" duration="18" />
+    </flow>
+    <flow id="f_avi_izq_auto" type="auto" route="r_avi_hacia_izq" begin="0" end="3600" vehsPerHour="130.000" />
+    <flow id="f_avi_izq_cam" type="camioneta" route="r_avi_hacia_izq" begin="0" end="3600" vehsPerHour="50.000" />
+
+    
+    <flow id="f_avi_izq_jp" type="auto" route="r_avi_izq_a_jp" begin="0" end="3600" vehsPerHour="70.000" />
+    <flow id="f_avi_der_jp" type="auto" route="r_avi_der_a_jp" begin="0" end="3600" vehsPerHour="70.000" />
+    <flow id="f_avi_der_tunel" type="auto" route="r_avi_der_a_tunel" begin="0" end="3600" vehsPerHour="90.000" />
+    <flow id="f_avi_der_tun_c" type="camioneta" route="r_avi_der_a_tunel" begin="0" end="3600" vehsPerHour="50.000" />
+
+    
+    <flow id="f_tunel_bnp_auto" type="auto" route="r_tunel_bnp_este" begin="0" end="3600" vehsPerHour="120.000" />
+    <flow id="f_tunel_bnp_cam" type="camioneta" route="r_tunel_bnp_este" begin="0" end="3600" vehsPerHour="70.000" />
+</routes>

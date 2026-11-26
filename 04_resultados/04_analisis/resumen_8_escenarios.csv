@@ -1,0 +1,9 @@
+﻿escenario,espera_promedio_s,desviacion_espera_s,perdida_promedio_s,pendientes_promedio
+baja,15.73,0.13,25.8,29.67
+media,15.88,0.08,27.67,44.67
+alta,42.99,1.62,65.77,267.67
+punta_jp,58.49,1.03,87.61,351
+punta_avi,19.68,0.46,37.97,67
+punta_tuneles,37.41,0.29,57.88,167
+asimetrico_1,33.68,0.27,55.73,223.33
+asimetrico_2,20.52,0.08,37.19,59.67

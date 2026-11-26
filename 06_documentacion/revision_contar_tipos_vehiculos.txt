@@ -1,0 +1,98 @@
+﻿  1: 
+  2: import csv
+  3: from collections import defaultdict
+  4: from pathlib import Path
+  5: 
+  6: import traci
+  7: from sumolib import checkBinary
+  8: 
+  9: carpeta = Path(__file__).resolve().parent
+ 10: config = carpeta / "simulacion.sumocfg"
+ 11: salida = carpeta / "conteo_por_tipo.csv"
+ 12: 
+ 13: # Vias de entrada a la red simulada
+ 14: accesos = {
+ 15:     "jp_sube_sur": "Javier Prado subida",
+ 16:     "jp_baja_norte_1": "Javier Prado bajada",
+ 17:     "avi_izq_in": "Aviacion izquierda",
+ 18:     "avi_der_in": "Aviacion derecha",
+ 19:     "salida_tunel_teatro": "Tunel norte",
+ 20:     "entrada_tunel_bnp": "Tunel BNP"
+ 21: }
+ 22: 
+ 23: tipos = [
+ 24:     "auto", "camioneta", "moto",
+ 25:     "corredor", "bus_aviacion"
+ 26: ]
+ 27: 
+ 28: # Almacenar vehiculos ya registrados por acceso
+ 29: vistos = {via: set() for via in accesos}
+ 30: conteos = defaultdict(int)
+ 31: 
+ 32: intervalo = 300
+ 33: duracion = 3600
+ 34: 
+ 35: comando = [
+ 36:     checkBinary("sumo"),
+ 37:     "-c", str(config),
+ 38:     "--output-prefix", "conteo_",
+ 39:     "--no-step-log", "true"
+ 40: ]
+ 41: 
+ 42: try:
+ 43:     traci.start(comando)
+ 44: 
+ 45:     while traci.simulation.getTime() < duracion:
+ 46:         traci.simulationStep()
+ 47:         tiempo = traci.simulation.getTime()
+ 48: 
+ 49:         for via in accesos:
+ 50:             vehiculos = traci.edge.getLastStepVehicleIDs(via)
+ 51: 
+ 52:             for vehiculo in vehiculos:
+ 53:                 if vehiculo in vistos[via]:
+ 54:                     continue
+ 55: 
+ 56:                 vistos[via].add(vehiculo)
+ 57:                 tipo = traci.vehicle.getTypeID(vehiculo)
+ 58: 
+ 59:                 # Asignar la observacion al intervalo
+ 60:                 bloque = min(
+ 61:                     int(max(0, tiempo - 0.000001) // intervalo),
+ 62:                     duracion // intervalo - 1
+ 63:                 )
+ 64: 
+ 65:                 conteos[(bloque, via, tipo)] += 1
+ 66: 
+ 67: finally:
+ 68:     if traci.isLoaded():
+ 69:         traci.close()
+ 70: 
+ 71: with salida.open(
+ 72:     "w", newline="", encoding="utf-8-sig"
+ 73: ) as archivo:
+ 74: 
+ 75:     escritor = csv.writer(archivo)
+ 76:     escritor.writerow([
+ 77:         "inicio_s", "fin_s", "acceso",
+ 78:         "tipo_vehiculo", "cantidad"
+ 79:     ])
+ 80: 
+ 81:     for bloque in range(duracion // intervalo):
+ 82:         for via, nombre in accesos.items():
+ 83:             for tipo in tipos:
+ 84:                 escritor.writerow([
+ 85:                     bloque * intervalo,
+ 86:                     (bloque + 1) * intervalo,
+ 87:                     nombre,
+ 88:                     tipo,
+ 89:                     conteos[(bloque, via, tipo)]
+ 90:                 ])
+ 91: 
+ 92: print("\nCONTEO COMPLETADO")
+ 93: print("Archivo:", salida.name)
+ 94: print("Accesos:", len(accesos))
+ 95: print("Tipos vehiculares:", len(tipos))
+ 96: print("Intervalos:", duracion // intervalo)
+ 97: print("Total de registros:", 360)
+ 98: print("Vehiculos contabilizados:", sum(conteos.values()))

@@ -1,0 +1,589 @@
+﻿
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\analizar_repeticiones.py
+LineNumber : 7
+Line       : carpeta = Path(__file__).resolve().parent
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\analizar_repeticiones.py
+LineNumber : 32
+Line       :             f"{prefijo}tripinfo.xml"
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\analizar_repeticiones.py
+LineNumber : 35
+Line       :             f"{prefijo}resumen.xml"
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\analizar_repeticiones.py
+LineNumber : 95
+Line       : archivo_detalle = carpeta / "resultados_24_ejecuciones.csv"
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\analizar_repeticiones.py
+LineNumber : 146
+Line       : archivo_resumen = carpeta / "resumen_8_escenarios.csv"
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\auditar_conflictos.py
+LineNumber : 5
+Line       : carpeta = Path(__file__).resolve().parent
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\auditar_conflictos.py
+LineNumber : 6
+Line       : archivo = carpeta / "jp_aviacion.net.xml"
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\auditar_conflictos.py
+LineNumber : 10
+Line       : print("\nAUDITORIA DE CONFLICTOS - SUMO")
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\auditar_rutas_sensores.py
+LineNumber : 5
+Line       : carpeta = Path(__file__).resolve().parent
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\auditar_rutas_sensores.py
+LineNumber : 8
+Line       :     carpeta / "trafico_prueba.rou.xml"
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\auditar_rutas_sensores.py
+LineNumber : 12
+Line       :     carpeta / "adicionales.add.xml"
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\auditar_semaforos.py
+LineNumber : 5
+Line       : # Leer la red generada por SUMO
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\auditar_semaforos.py
+LineNumber : 6
+Line       : carpeta = Path(__file__).resolve().parent
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\auditar_semaforos.py
+LineNumber : 7
+Line       : archivo = carpeta / "jp_aviacion.net.xml"
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\auditar_sensores.py
+LineNumber : 5
+Line       : carpeta = Path(__file__).resolve().parent
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\auditar_sensores.py
+LineNumber : 6
+Line       : archivo = carpeta / "adicionales.add.xml"
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\auditar_sensores.py
+LineNumber : 9
+Line       :     print("ERROR: No se encontro adicionales.add.xml")
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\auditar_sensores.py
+LineNumber : 51
+Line       :         # En SUMO, el identificador del carril
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\auditar_vehiculos.py
+LineNumber : 5
+Line       : carpeta = Path(__file__).resolve().parent
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\auditar_vehiculos.py
+LineNumber : 6
+Line       : archivo = carpeta / "trafico_prueba.rou.xml"
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\comparar_escenarios.py
+LineNumber : 5
+Line       : carpeta = Path(__file__).resolve().parent
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\comparar_escenarios.py
+LineNumber : 18
+Line       : print("\nCOMPARACION DE ESCENARIOS SUMO")
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\comparar_escenarios.py
+LineNumber : 23
+Line       :     archivo = carpeta / f"{nombre}_tripinfo.xml"
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\comparar_escenarios.py
+LineNumber : 70
+Line       :     resumen = carpeta / f"{nombre}_resumen.xml"
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\comparar_sensores_escenarios.py
+LineNumber : 7
+Line       : carpeta = Path(__file__).resolve().parent
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\comparar_sensores_escenarios.py
+LineNumber : 27
+Line       :     archivo = carpeta / f"{escenario}_salidas_sensores.xml"
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\comparar_sensores_escenarios.py
+LineNumber : 54
+Line       :             # SUMO puede usar valores negativos
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\comparar_sensores_escenarios.py
+LineNumber : 102
+Line       : salida = carpeta / "comparacion_sensores_escenarios.csv"
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\comparar_todos_escenarios.py
+LineNumber : 6
+Line       : carpeta = Path(__file__).resolve().parent
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\comparar_todos_escenarios.py
+LineNumber : 26
+Line       :     archivo_viajes = carpeta / f"{nombre}_tripinfo.xml"
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\comparar_todos_escenarios.py
+LineNumber : 27
+Line       :     archivo_resumen = carpeta / f"{nombre}_resumen.xml"
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\comparar_todos_escenarios.py
+LineNumber : 72
+Line       : salida = carpeta / "comparacion_8_escenarios.csv"
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\contar_tipos_sensores.py
+LineNumber : 7
+Line       : from sumolib import checkBinary
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\contar_tipos_sensores.py
+LineNumber : 9
+Line       : carpeta = Path(__file__).resolve().parent
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\contar_tipos_sensores.py
+LineNumber : 10
+Line       : config = carpeta / "simulacion.sumocfg"
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\contar_tipos_sensores.py
+LineNumber : 11
+Line       : salida = carpeta / "conteo_tipos_sensores.csv"
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\contar_tipos_sensores.py
+LineNumber : 28
+Line       :     checkBinary("sumo"),
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\contar_tipos_vehiculos.py
+LineNumber : 7
+Line       : from sumolib import checkBinary
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\contar_tipos_vehiculos.py
+LineNumber : 9
+Line       : carpeta = Path(__file__).resolve().parent
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\contar_tipos_vehiculos.py
+LineNumber : 10
+Line       : config = carpeta / "simulacion.sumocfg"
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\contar_tipos_vehiculos.py
+LineNumber : 11
+Line       : salida = carpeta / "conteo_por_tipo.csv"
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\contar_tipos_vehiculos.py
+LineNumber : 36
+Line       :     checkBinary("sumo"),
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\contar_vehiculos_unicos.py
+LineNumber : 7
+Line       : from sumolib import checkBinary
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\contar_vehiculos_unicos.py
+LineNumber : 9
+Line       : carpeta = Path(__file__).resolve().parent
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\contar_vehiculos_unicos.py
+LineNumber : 10
+Line       : config = carpeta / "simulacion.sumocfg"
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\contar_vehiculos_unicos.py
+LineNumber : 11
+Line       : salida = carpeta / "conteo_unico_por_zona.csv"
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\contar_vehiculos_unicos.py
+LineNumber : 56
+Line       :     checkBinary("sumo"),
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\convertir_datos.py
+LineNumber : 8
+Line       : carpeta = Path(__file__).resolve().parent
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\convertir_datos.py
+LineNumber : 9
+Line       : archivo_xml = carpeta / "salidas_sensores.xml"
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\convertir_datos.py
+LineNumber : 10
+Line       : archivo_csv = carpeta / "datos_trafico.csv"
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\convertir_datos.py
+LineNumber : 12
+Line       : # Leer los datos generados por SUMO
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\ejecutar_escenarios.py
+LineNumber : 5
+Line       : from sumolib import checkBinary
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\ejecutar_escenarios.py
+LineNumber : 7
+Line       : carpeta = Path(__file__).resolve().parent
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\ejecutar_escenarios.py
+LineNumber : 8
+Line       : config = carpeta / "simulacion.sumocfg"
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\ejecutar_escenarios.py
+LineNumber : 14
+Line       :         "No se encontro simulacion.sumocfg"
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\ejecutar_escenarios.py
+LineNumber : 17
+Line       : print("\nEJECUCION DE ESCENARIOS SUMO")
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\ejecutar_escenarios.py
+LineNumber : 22
+Line       :     rutas = carpeta / f"trafico_{nombre}.rou.xml"
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\ejecutar_escenarios.py
+LineNumber : 32
+Line       :         checkBinary("sumo"),
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\ejecutar_escenarios.py
+LineNumber : 39
+Line       :         "--tripinfo-output", "tripinfo.xml",
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\ejecutar_escenarios.py
+LineNumber : 40
+Line       :         "--summary-output", "resumen.xml",
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\ejecutar_escenarios.py
+LineNumber : 58
+Line       :         f"{nombre}_salidas_sensores.xml"
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\ejecutar_escenarios.py
+LineNumber : 61
+Line       :     viajes = carpeta / f"{nombre}_tripinfo.xml"
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\ejecutar_escenarios.py
+LineNumber : 62
+Line       :     resumen = carpeta / f"{nombre}_resumen.xml"
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\ejecutar_escenarios_variados.py
+LineNumber : 5
+Line       : from sumolib import checkBinary
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\ejecutar_escenarios_variados.py
+LineNumber : 7
+Line       : carpeta = Path(__file__).resolve().parent
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\ejecutar_escenarios_variados.py
+LineNumber : 8
+Line       : config = carpeta / "simulacion.sumocfg"
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\ejecutar_escenarios_variados.py
+LineNumber : 25
+Line       :     rutas = carpeta / f"trafico_{nombre}.rou.xml"
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\ejecutar_escenarios_variados.py
+LineNumber : 35
+Line       :         checkBinary("sumo"),
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\ejecutar_escenarios_variados.py
+LineNumber : 42
+Line       :         "--tripinfo-output", "tripinfo.xml",
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\ejecutar_escenarios_variados.py
+LineNumber : 43
+Line       :         "--summary-output", "resumen.xml",
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\ejecutar_escenarios_variados.py
+LineNumber : 61
+Line       :         carpeta / f"{nombre}_salidas_sensores.xml",
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\ejecutar_escenarios_variados.py
+LineNumber : 62
+Line       :         carpeta / f"{nombre}_tripinfo.xml",
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\ejecutar_escenarios_variados.py
+LineNumber : 63
+Line       :         carpeta / f"{nombre}_resumen.xml"
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\extraer_conteos_24.py
+LineNumber : 8
+Line       : from sumolib import checkBinary
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\extraer_conteos_24.py
+LineNumber : 10
+Line       : carpeta = Path(__file__).resolve().parent
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\extraer_conteos_24.py
+LineNumber : 11
+Line       : config = carpeta / "simulacion.sumocfg"
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\extraer_conteos_24.py
+LineNumber : 13
+Line       : salida = carpeta / "conteos_24_ejecuciones.csv"
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\extraer_conteos_24.py
+LineNumber : 85
+Line       :         rutas = carpeta / f"trafico_{escenario}.rou.xml"
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\extraer_conteos_24.py
+LineNumber : 93
+Line       :             referencia + "salidas_sensores.xml"
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\extraer_conteos_24.py
+LineNumber : 98
+Line       :             prefijo + "salidas_sensores.xml"
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\extraer_conteos_24.py
+LineNumber : 117
+Line       :             checkBinary("sumo"),
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\generar_escenarios.py
+LineNumber : 5
+Line       : carpeta = Path(__file__).resolve().parent
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\generar_escenarios.py
+LineNumber : 6
+Line       : original = carpeta / "trafico_prueba.rou.xml"
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\generar_escenarios.py
+LineNumber : 16
+Line       :         "No se encontro trafico_prueba.rou.xml"
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\generar_escenarios.py
+LineNumber : 53
+Line       :     salida = carpeta / f"trafico_{nombre}.rou.xml"
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\generar_escenarios_variados.py
+LineNumber : 5
+Line       : carpeta = Path(__file__).resolve().parent
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\generar_escenarios_variados.py
+LineNumber : 6
+Line       : original = carpeta / "trafico_prueba.rou.xml"
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\generar_escenarios_variados.py
+LineNumber : 77
+Line       :     salida = carpeta / f"trafico_{nombre}.rou.xml"
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\integrar_base_24.py
+LineNumber : 7
+Line       : carpeta = Path(__file__).resolve().parent
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\integrar_base_24.py
+LineNumber : 34
+Line       : entrada = carpeta / "conteos_24_ejecuciones.csv"
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\integrar_base_24.py
+LineNumber : 35
+Line       : salida = carpeta / "base_ampliada_ML.csv"
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\integrar_base_24.py
+LineNumber : 91
+Line       :             prefijo + "salidas_sensores.xml"
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\probar_conteos_escenario.py
+LineNumber : 7
+Line       : from sumolib import checkBinary
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\probar_conteos_escenario.py
+LineNumber : 9
+Line       : carpeta = Path(__file__).resolve().parent
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\probar_conteos_escenario.py
+LineNumber : 16
+Line       : config = carpeta / "simulacion.sumocfg"
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\probar_conteos_escenario.py
+LineNumber : 17
+Line       : rutas = carpeta / f"trafico_{escenario}.rou.xml"
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\probar_conteos_escenario.py
+LineNumber : 19
+Line       : salida = carpeta / "prueba_conteos_punta_jp_s43.csv"
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\probar_conteos_escenario.py
+LineNumber : 58
+Line       :     checkBinary("sumo"),
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\repetir_escenarios.py
+LineNumber : 5
+Line       : from sumolib import checkBinary
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\repetir_escenarios.py
+LineNumber : 7
+Line       : carpeta = Path(__file__).resolve().parent
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\repetir_escenarios.py
+LineNumber : 8
+Line       : config = carpeta / "simulacion.sumocfg"
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\repetir_escenarios.py
+LineNumber : 23
+Line       : print("\nREPETICION DE ESCENARIOS SUMO")
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\repetir_escenarios.py
+LineNumber : 31
+Line       :         rutas = carpeta / f"trafico_{escenario}.rou.xml"
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\repetir_escenarios.py
+LineNumber : 44
+Line       :             checkBinary("sumo"),
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\repetir_escenarios.py
+LineNumber : 51
+Line       :             "--tripinfo-output", "tripinfo.xml",
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\repetir_escenarios.py
+LineNumber : 52
+Line       :             "--summary-output", "resumen.xml",
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\repetir_escenarios.py
+LineNumber : 70
+Line       :             carpeta / f"{prefijo}salidas_sensores.xml",
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\repetir_escenarios.py
+LineNumber : 71
+Line       :             carpeta / f"{prefijo}tripinfo.xml",
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\repetir_escenarios.py
+LineNumber : 72
+Line       :             carpeta / f"{prefijo}resumen.xml"
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\simulacion_base.py
+LineNumber : 2
+Line       : import sumolib
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\simulacion_base.py
+LineNumber : 136
+Line       :     <laneAreaDetector id="e2_jp_sube_bus"   lane="jp_sube_sur_0"     pos="50" length="200" freq="300" file="salidas_sensores.xml"/>
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\simulacion_base.py
+LineNumber : 137
+Line       :     <laneAreaDetector id="e2_jp_sube_priv"  lane="jp_sube_sur_1"     pos="50" length="200" freq="300" file="salidas_sensores.xml"/>
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\simulacion_base.py
+LineNumber : 139
+Line       :     <laneAreaDetector id="e2_jp_baja_bus"   lane="jp_baja_norte_2_0" pos="10" length="140" freq="300" file="salidas_sensores.xml"/>
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\simulacion_base.py
+LineNumber : 140
+Line       :     <laneAreaDetector id="e2_jp_baja_priv"  lane="jp_baja_norte_2_1" pos="10" length="140" freq="300" file="salidas_sensores.xml"/>
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\simulacion_base.py
+LineNumber : 142
+Line       :     <laneAreaDetector id="e2_tunel_norte_0" lane="salida_tunel_teatro_0" pos="15" length="90" freq="300" 
+             file="salidas_sensores.xml"/>
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\simulacion_base.py
+LineNumber : 144
+Line       :     <laneAreaDetector id="e2_avi_izq_0" lane="avi_izq_in_0" pos="60" length="200" freq="300" file="salidas_sensores.xml"/>
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\simulacion_base.py
+LineNumber : 145
+Line       :     <laneAreaDetector id="e2_avi_izq_1" lane="avi_izq_in_1" pos="60" length="200" freq="300" file="salidas_sensores.xml"/>
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\simulacion_base.py
+LineNumber : 147
+Line       :     <laneAreaDetector id="e2_avi_der_0" lane="avi_der_in_0" pos="60" length="200" freq="300" file="salidas_sensores.xml"/>
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\simulacion_base.py
+LineNumber : 148
+Line       :     <laneAreaDetector id="e2_avi_der_1" lane="avi_der_in_1" pos="60" length="200" freq="300" file="salidas_sensores.xml"/>
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\simulacion_base.py
+LineNumber : 150
+Line       :     <laneAreaDetector id="e2_rampa_0"   lane="rampa_bnp_0"  pos="10" length="80"  freq="300" file="salidas_sensores.xml"/>
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\simulacion_base.py
+LineNumber : 234
+Line       : # 6. ARCHIVO DE CONFIGURACIÓN DE SUMO
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\simulacion_base.py
+LineNumber : 237
+Line       :         <net-file value="jp_aviacion.net.xml"/>
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\simulacion_base.py
+LineNumber : 238
+Line       :         <route-files value="trafico_prueba.rou.xml"/>
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\simulacion_base.py
+LineNumber : 239
+Line       :         <additional-files value="adicionales.add.xml"/>
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\simulacion_base.py
+LineNumber : 250
+Line       :         "jp_aviacion.nod.xml": NODOS_XML,
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\simulacion_base.py
+LineNumber : 251
+Line       :         "jp_aviacion.edg.xml": CALLES_XML,
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\simulacion_base.py
+LineNumber : 252
+Line       :         "jp_aviacion.con.xml": CONEXIONES_XML,
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\simulacion_base.py
+LineNumber : 253
+Line       :         "adicionales.add.xml": ADICIONALES_XML,
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\simulacion_base.py
+LineNumber : 254
+Line       :         "trafico_prueba.rou.xml": RUTAS_XML,
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\simulacion_base.py
+LineNumber : 255
+Line       :         "simulacion.sumocfg": CONFIG_XML,
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\simulacion_base.py
+LineNumber : 262
+Line       :     netconvert_bin = sumolib.checkBinary("netconvert")
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\simulacion_base.py
+LineNumber : 265
+Line       :         "--node-files", "jp_aviacion.nod.xml",
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\simulacion_base.py
+LineNumber : 266
+Line       :         "--edge-files", "jp_aviacion.edg.xml",
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\simulacion_base.py
+LineNumber : 267
+Line       :         "--connection-files", "jp_aviacion.con.xml",
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\simulacion_base.py
+LineNumber : 268
+Line       :         "--output-file", "jp_aviacion.net.xml",
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\simulacion_base.py
+LineNumber : 272
+Line       :     print("Red compilada: jp_aviacion.net.xml")
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\simulacion_base.py
+LineNumber : 274
+Line       :     sumo_gui_bin = sumolib.checkBinary("sumo-gui")
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\simulacion_base.py
+LineNumber : 275
+Line       :     subprocess.Popen([sumo_gui_bin, "-c", "simulacion.sumocfg"])
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\simulacion_base.py
+LineNumber : 276
+Line       :     print("Abriendo SUMO-GUI...")
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\validar_reproducibilidad.py
+LineNumber : 5
+Line       : carpeta = Path(__file__).resolve().parent
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\validar_reproducibilidad.py
+LineNumber : 9
+Line       :         "rep_s43_punta_jp_salidas_sensores.xml"
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\validar_reproducibilidad.py
+LineNumber : 12
+Line       :         "prueba_conteos_salidas_sensores.xml"
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\verificar_duplicados_e2.py
+LineNumber : 5
+Line       : from sumolib import checkBinary
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\verificar_duplicados_e2.py
+LineNumber : 7
+Line       : carpeta = Path(__file__).resolve().parent
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\verificar_duplicados_e2.py
+LineNumber : 8
+Line       : config = carpeta / "simulacion.sumocfg"
+
+Path       : C:\Users\20230\Downloads\OCTAVO CICLO\machine learning\Proyecto_ML_Trafico\verificar_duplicados_e2.py
+LineNumber : 28
+Line       :     checkBinary("sumo"),
+
+
+
